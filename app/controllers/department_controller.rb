@@ -49,4 +49,9 @@ class DepartmentController < ApplicationController
 		redirect_to action: "index"
 	end
 
+	private
+		def department_params
+			params.require(:department).permit(:title, :description)
+		end
+
 end

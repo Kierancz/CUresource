@@ -3,8 +3,11 @@ Curesource::Application.routes.draw do
   devise_scope :users do
     match '/users/:id',       to: "users#show",    via: 'get'
   end
-  resources :department do
-    resources :course
+  resources :departments do
+    resources :posts
+  end
+  resources :courses do
+    resources :posts
   end
 
   root 'pages#home'

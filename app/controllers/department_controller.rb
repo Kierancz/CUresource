@@ -17,6 +17,7 @@ class DepartmentController < ApplicationController
 
 	def index
 		@departments = Department.all
+		@newdepartment = Department.new
 	end
 
 	def show

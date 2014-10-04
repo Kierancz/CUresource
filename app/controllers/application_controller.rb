@@ -17,6 +17,13 @@ class ApplicationController < ActionController::Base
     redirect_to root_url
   end
 
+  #For cancan permitted attr. bug
+  before_filter do
+    resource = controller_name.singularize.to_sym
+    method = "#{resource}_params"
+    params[resource] &&= send(method) if respond_to?(method, true)
+  end
+
   protected
 
     def configure_permitted_parameters

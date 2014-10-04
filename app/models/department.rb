@@ -1,5 +1,5 @@
 class Department < ActiveRecord::Base
 	has_many :courses
-	has_many :posts
+	has_many :posts, as: :postable	#allows polymorphic posts
 	has_and_belongs_to_many :users, -> {uniq}
 end

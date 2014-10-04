@@ -4,8 +4,8 @@ class CreatePosts < ActiveRecord::Migration
     	t.string :title
     	t.text :description
     	t.integer :user_id
-    	t.integer :course_id
-    	t.integer :department_id
+    	t.integer :postable_id
+    	t.string :postable_type
 
       t.timestamps
     end

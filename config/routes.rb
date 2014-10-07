@@ -4,6 +4,7 @@ Curesource::Application.routes.draw do
     match '/users/:id',       to: "users#show",    via: 'get'
   end
   resources :departments do
+    resources :courses
     resources :posts
   end
   resources :courses do

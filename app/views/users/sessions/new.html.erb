@@ -1,0 +1,27 @@
+<% provide(:title, "Sign in") %>
+<h1>Sign in</h1>
+
+<div class="container-fluid">
+	<div class="row">
+	  	<div class="col-xs-12 col-md-6 col-md-offset-3">
+			<div class="panel panel-default">
+	  			<div class="panel-body">
+
+					<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+					  <%= f.label :email %>
+					  <%= f.text_field :email, autofocus: true, class: "form-control"%>
+
+					  <%= f.label :password %>
+					  <%= f.password_field :password, autocomplete: "off", class: "form-control"%>
+
+					  <span id="submit" class="pull-left">
+					  	<%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+					  </span>
+					<% end %>
+		  		</div>
+			</div>
+			<%= render "devise/shared/links" %>
+	  	</div>
+	</div>
+</div>
+

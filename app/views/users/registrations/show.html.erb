@@ -1,0 +1,22 @@
+<% provide(:title, @user.username) %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+
+      <div class="row">
+        <div class="col-md-8">
+          <h2 style="margin: 6px"><b><%= @user.email %></b></h2>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-4">
+        	<center><h3><%= time_ago_in_words(@user.created_at.to_time) %><br>
+        	<b><small>Age</small></b></h3></center>
+        </div>
+  	  </div>
+  	  <hr>
+
+    </div>
+  </div>
+</div>

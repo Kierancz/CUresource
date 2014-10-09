@@ -11,21 +11,24 @@
       <% end %>
     <% end %>
 
-    <center><h3>Create Department:</h3></center>
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <%= form_for @newdepartment do |f| %>
-          <%= f.label :name %>
-          <%= f.text_field :name, class: "form-control" %>
-          <%= f.label :title %>
-          <%= f.text_field :title, class: "form-control" %>
-          <%= f.label "Description (Optional)"%>
-          <%= f.text_area :description, :rows => 3, class: "form-control" %>
-          <span class="pull-left">
-            <%= f.submit "Create New Department", class: "btn btn-large btn-primary" %>
-          </span>
-        <% end %>
+    <% if current_user %>
+      <center><h3>Create Department:</h3></center>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <%= form_for @newdepartment do |f| %>
+            <%= f.label "Subject" %>
+            <%= f.text_field :name, class: "form-control" %>
+            <%= f.label :title %>
+            <%= f.text_field :title, class: "form-control" %>
+            <%= f.label "Description (Optional)"%>
+            <%= f.text_area :description, :rows => 3, class: "form-control" %>
+            <span class="pull-left">
+              <%= f.submit "Create New Department", class: "btn btn-large btn-primary" %>
+            </span>
+          <% end %>
+        </div>
       </div>
-    </div>
+    <% end %>
+
   </div>
 </div>

@@ -22,22 +22,20 @@ class CoursesController < ApplicationController
 	end
 
 	def show
-		id = params[:id]
-		@course = Course.find(id)
+		@course = Course.find(params[:id])
 	end
 
 	def edit
-		id = params[:id]
-		@course = Course.find(id)
+		@course = Course.find(params[:id])
 	end
 
 	def update
 		@course = Course.find(params[:id])
 		if @course.update_attributes(course_params)
 			redirect_to @course
-			flash[:success] = "Course was successfully updated!"
+			flash[:success] = "Course was updated!"
 		else
-			render :action => 'edit'
+			render action: 'edit'
 		end
 	end
 

@@ -1,5 +1,7 @@
 class DepartmentsController < ApplicationController
 	load_and_authorize_resource
+	#Blocks these methods before a user is authenticated.
+	before_action :authenticate_user!, only: [:create, :destroy, :new, :edit, :update]
 
 	def new
 		@department = Department.new
@@ -9,7 +11,7 @@ class DepartmentsController < ApplicationController
 		@department = Department.create(department_params)
 		if @department.save
 			redirect_to @department
-			flash[:success] = "Department: #{@department.title} was successfully created!"
+			flash[:success] = "The #{@department.title} department was created!"
 		else 
 			render 'new'
 		end 
@@ -36,7 +38,7 @@ class DepartmentsController < ApplicationController
 		@department = Department.find(params[:id])
 		if @department.update_attributes(department_params)
 			redirect_to @department
-			flash[:success] = "Department was successfully updated!"
+			flash[:success] = "#{@department.title} department was successfully updated!"
 		else
 			render :action => 'edit'
 		end
@@ -45,9 +47,9 @@ class DepartmentsController < ApplicationController
 	def destroy
 		@department = Department.find(params[:id])
 		if @department.destroy()
-			flash[:success] = "Department #{@department} was successfully destroyed!"
+			flash[:success] = "The #{@department.title} department was destroyed!"
 		else
-			flash[:danger] = "Department failed to be destroyed. Please try again later."
+			flash[:danger] = "#{@department.title} failed to be destroyed. Please try again later."
 		end
 		redirect_to action: "index"
 	end

@@ -1,0 +1,18 @@
+<script src="js/wysihtml5-0.3.0.js"></script>
+<script src="js/jquery-1.7.2.min.js"></script>
+
+<head>
+<script type="text/javascript">
+  	$(document).ready(function(){
+
+    	$('.wysihtml5').each(function(i, elem) {
+      		$(elem).wysihtml5({
+      			"html": true,
+      			"lists": false,
+      			"video": true
+    			});
+      });
+
+		})
+</script>
+</head>

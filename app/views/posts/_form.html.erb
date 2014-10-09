@@ -1,0 +1,20 @@
+<%= render "posts/wysihtml5" %>
+
+<center><h3>Add a Post:</h3></center>
+<div class="panel panel-default">
+	<div class="panel-body">
+
+    <%= form_for([@department, @department.posts.build]) do |f| %>
+      <%= f.label :title %>
+      <%= f.text_field :title, class: "form-control" %>
+
+      <%= f.label :description %>
+      <%= f.text_area :description, :rows => 3, class: "form-control" %>
+
+  	  <%= f.text_area :content, :rows => 5, placeholder: 'Enter Content Here', class: "wysihtml5" %>
+
+  	  <span class="pull-left"><%= f.submit "Create Post", class: "btn btn-medium btn-primary" %></span>
+   <% end %>
+
+	</div>      
+</div>

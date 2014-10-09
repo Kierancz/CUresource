@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20141001235303) do
   create_table "posts", force: true do |t|
     t.string   "title"
     t.text     "description"
+    t.text     "content"
     t.integer  "user_id"
     t.integer  "postable_id"
     t.string   "postable_type"

@@ -1,0 +1,46 @@
+<% if current_user %>
+	<h1><b>Editing: </b><%= @course.title %></h1>
+	<hr><br>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-8 col-md-6 col-xs-offset-2 col-md-offset-3">
+      <div class="panel panel-default">
+        <div class="panel-body">
+     			<%= simple_form_for(@course) do |f| %>
+
+          		<%= f.label :title %>
+          		<%= f.text_field :title, class: "form-control" %>
+
+          		<%= f.label :description %>
+          		<%= f.text_area :description, :rows => 3, class: "form-control" %>
+
+              <%= f.label "Description (Optional)"%>
+              <%= f.text_area :description, :rows => 3, class: "form-control" %>
+
+              <%= f.label "Banner Url (Optional)" %>
+              <%= f.url_field :banner %>
+
+          		<span class="pull-left"><%= f.submit "Save Changes", class: "btn btn-large btn-primary" %></span>
+          		<% end %>
+              
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h3>Delete the <%= @course.title %> course:</h3>
+      		<span class="pull-left"><%= button_to('Delete Course', { :action => "destroy", :id => @course.id },
+          method: "delete", data: { confirm: 'Are you sure?', disable_with: 'loading...' }, class: "btn btn-large btn-danger") %></span>
+        </div>
+      </div>
+		</div>
+	</div>
+</div>
+
+
+<% else %>
+<center><h1>You do not have permission to access this page</h1>
+<% end %>
+
+
+

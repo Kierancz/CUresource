@@ -1,41 +1,79 @@
 <% provide(:title, '#{@department.title}') %>
 
+<div id="titlesection">
+  <div id="editlink" class="pull-left">
+  <% if current_user %>
+    <%= button_to([:edit, @department], :method => "get", :class => 'btn btn-default btn-link btn-xs') do %>
+      <span class="glyphicon glyphicon-pencil"></span>Edit <%= @department.name %>
+    <% end %>
+  <% end %>
+  </div>
+
+    <h1><b><%= @department.title %></b><br>
+      <small><%= @department.description %></small>
+    </h1>
+</div>
+
 <div class="row">
   <div class="col-xs-12 col-md-6 col-md-offset-3">
-    <center><h1><b><%= @department.title %></b><br>
-      <small><%= @department.description %></small><br>
-    </h1></center>
-    <hr>
 
-    <center><h3>Courses:</h3></center>
-    <% @department.courses.each do |course| %>
-      <%= link_to(course, :class => "list-group-item") do %>
-        <h4 class="list-group-item-heading">
-          <%= course.title %>
-        </h4>
-      <% end %>
-    <% end %>
+    <ul class="nav nav-tabs">
+      <li><a href="#info" data-target="#info" data-toggle="tab">Info</a>
+      </li>
+      <li class="active"> <a href="#courses" data-target="#courses" data-toggle="tab">Courses</a>
+      </li>
+      <li><a href="#createcourse" data-target="#createcourse" data-toggle="tab">Create Course</a>
+      </li>
+      <li><a href="#posts" data-target="#posts" data-toggle="tab">Posts</a>
+      </li>
+      <li><a href="#createpost" data-target="#createpost" data-toggle="tab">Create Post</a>
+      </li>
+    </ul>
 
-  <% if current_user %>
-    <center><h3>Create Course in <%= @department.title %></h3></center>
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <%= form_for [@department, @department.courses.build] do |f| %>
-          <%= f.label :number %>
-          <%= f.number_field :number %>
-          <%= f.label :title %>
-          <%= f.text_field :title, class: "form-control" %>
-          <%= f.label "Description (Optional)"%>
-          <%= f.text_area :description, :rows => 3, class: "form-control" %>
-          <%= f.label "Banner Url (Optional)" %>
-          <%= f.url_field :banner %>
-          <span class="pull-left">
-            <%= f.submit "Create New Course", class: "btn btn-large btn-primary" %>
-          </span>
+    <div class="tab-content">
+      <div class="tab-pane active fade in" id="courses"><br>
+        <center><h3>Courses:</h3></center>
+        <% @department.courses.each do |course| %>
+          <%= link_to(course, :class => "list-group-item") do %>
+            <h4 class="list-group-item-heading">
+              <%= course.title %>
+            </h4>
+          <% end %>
         <% end %>
       </div>
+
+      <div class="tab-pane" id="posts"><br>
+        <center><h3>Posts:</h3></center>
+      </div>
+
+    <% if current_user %>
+      <div class="tab-pane" id="createcourse"><br>
+        <center><h3>Create Course in <%= @department.title %>:</h3></center>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <%= form_for [@department, @department.courses.build] do |f| %>
+              <%= f.label :number %>
+              <%= f.number_field :number %>
+              <%= f.label :title %>
+              <%= f.text_field :title, class: "form-control" %>
+              <%= f.label "Description (Optional)"%>
+              <%= f.text_area :description, :rows => 3, class: "form-control" %>
+              <%= f.label "Banner Url (Optional)" %>
+              <%= f.url_field :banner %>
+              <span class="pull-left">
+                <%= f.submit "Create New Course", class: "btn btn-large btn-primary" %>
+              </span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane" id="createpost"><br>
+        <%= render "posts/form" %>
+      </div>
+
+    <% end %>
     </div>
-  s<% end %>
 
   </div>
 </div>

@@ -27,6 +27,7 @@ class DepartmentsController < ApplicationController
 		@department = Department.find(id)
 		@postable = @department
 		@posts = @department.posts
+		@index = 0
 
 		@course = Course.new
 		@course.department_id = @department

@@ -1,0 +1,19 @@
+<div class="panel-group" id="accordion">
+  <% @posts.each do |post| %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= post.title.gsub(/\s+/, "") %>">
+            <%= post.title.capitalize %>
+          </a>
+        </h4>
+      </div>
+      <div id="collapse<%= post.title.gsub(/\s+/, "") %>" class="accordian-body collapse in">
+        <div class="accordian-inner">
+          <%= post.content.try(:html_safe) %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+

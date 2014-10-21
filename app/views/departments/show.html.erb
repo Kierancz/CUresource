@@ -6,7 +6,7 @@
       <div class="panel-body">
         <div id="titlesection">
           <div id="editlink" class="pull-left">
-            <% if current_user %>
+            <% if current_user && (can? :update, Department) %>
               <%= button_to(edit_department_path, :method => "get", :class => 'btn btn-default btn-link btn-xs') do %>
                 <span class="glyphicon glyphicon-pencil"></span>Edit <%= @department.name %>
               <% end %>
@@ -23,11 +23,15 @@
       </li>
       <li class="active"> <a href="#courses" data-target="#courses" data-toggle="tab">Courses</a>
       </li>
+      <% if current_user && (can? :update, Department) %>
       <li><a href="#createcourse" data-target="#createcourse" data-toggle="tab">Create Course</a>
       </li>
+      <% end %>
       <li><a href="#posts" data-target="#posts" data-toggle="tab">Posts</a>
       </li>
+      <% if current_user && (can? :create, Post) %>
       <li><a href="#createpost" data-target="#createpost" data-toggle="tab">Create Post</a>
+      <% end %>
       </li>
     </ul>
     
@@ -49,9 +53,11 @@
         <%= render "posts/posts" %>
       </div>
 
+      <% if current_user && (can? :create, Post) %>
       <div class="tab-pane" id="createpost"><br>
         <%= render "posts/form" %>
       </div>
+      <% end %>
 
     <% if current_user %>
       <div class="tab-pane" id="createcourse"><br>

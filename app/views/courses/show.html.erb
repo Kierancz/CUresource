@@ -16,7 +16,7 @@
         </div>
 
           <h1><b><%= @course.title %></b><br>
-            <small><%= @course.description %></small>
+            <h4><%= @course.description %></h4>
           </h1>
 
         <ul class="nav nav-tabs">
@@ -24,7 +24,9 @@
           </li>
           <li class="active"><a href="#posts" data-target="#posts" data-toggle="tab">Posts</a>
           </li>
+          <% if current_user %>
           <li><a href="#createpost" data-target="#createpost" data-toggle="tab">Create Post</a>
+          <% end %>
           </li>
         </ul>
 

@@ -8,8 +8,10 @@
     <ul class="nav nav-tabs">
       <li class="active"> <a href="#departments" data-target="#departments" data-toggle="tab">Departments</a>
       </li>
+      <% if can? :create, Department %>
       <li><a href="#createdepartment" data-target="#createdepartment" data-toggle="tab">Create Department</a>
       </li>
+      <% end %>
     </ul>
 
     <div class="tab-content">
@@ -23,7 +25,7 @@
         <% end %>
       </div>
 
-    <% if current_user %>
+    <% if can? :create, Department %>
       <div class="tab-pane" id="createdepartment"><br>
         <center><h3>Create Department:</h3></center>
         <%= form_for @newdepartment do |f| %>

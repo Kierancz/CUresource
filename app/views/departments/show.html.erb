@@ -27,7 +27,10 @@
       </li>
       <li><a href="#posts" data-target="#posts" data-toggle="tab">Posts</a>
       </li>
+      <li><a href="#createpost" data-target="#createpost" data-toggle="tab">Create Post</a>
+      </li>
     </ul>
+    
   <div class="col-xs-12 col-md-12 col-md-offset-0">
     <div class="tab-content">
       <div class="tab-pane active fade in" id="courses"><br>
@@ -42,7 +45,10 @@
       </div>
 
       <div class="tab-pane" id="posts"><br>
+        <%= render "posts/departmentposts" %>
+      </div>
 
+      <div class="tab-pane" id="createpost"><br>
         <%= render "posts/form" %>
       </div>
 

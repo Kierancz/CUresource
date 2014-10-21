@@ -22,7 +22,7 @@
         <ul class="nav nav-tabs">
           <li><a href="#info" data-target="#info" data-toggle="tab">Info</a>
           </li>
-          <li><a href="#posts" data-target="#posts" data-toggle="tab">Posts</a>
+          <li class="active"><a href="#posts" data-target="#posts" data-toggle="tab">Posts</a>
           </li>
           <li><a href="#createpost" data-target="#createpost" data-toggle="tab">Create Post</a>
           </li>
@@ -38,6 +38,7 @@
         	</div>
 
         	<div class="tab-pane" id="createpost"><br>
+            <%= render "posts/form" %>
         	</div>   
         </div> 	
 

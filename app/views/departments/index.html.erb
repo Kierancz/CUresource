@@ -25,24 +25,20 @@
 
     <% if current_user %>
       <div class="tab-pane" id="createdepartment"><br>
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <center><h3>Create Department:</h3></center>
-            <%= form_for @newdepartment do |f| %>
-              <%= f.label "Subject" %>
-              <%= f.text_field :name, class: "form-control" %>
-              <%= f.label :title %>
-              <%= f.text_field :title, class: "form-control" %>
-              <%= f.label "Description (Optional)"%>
-              <%= f.text_area :description, :rows => 3, class: "form-control" %>
-              <%= f.label "Banner Url (Optional)" %>
-              <%= f.url_field :banner %>
-              <span class="pull-left">
-                <%= f.submit "Create New Department", class: "btn btn-large btn-primary" %>
-              </span>
-            <% end %>
-          </div>
-        </div>
+        <center><h3>Create Department:</h3></center>
+        <%= form_for @newdepartment do |f| %>
+          <%= f.label "Subject" %>
+          <%= f.text_field :name, class: "form-control" %>
+          <%= f.label :title %>
+          <%= f.text_field :title, class: "form-control" %>
+          <%= f.label "Description (Optional)"%>
+          <%= f.text_area :description, :rows => 3, class: "form-control" %>
+          <%= f.label "Banner Url (Optional)" %>
+          <%= f.url_field :banner %>
+          <span class="pull-left">
+            <%= f.submit "Create New Department", class: "btn btn-large btn-primary" %>
+          </span>
+        <% end %>
       </div>
     </div>
     <% end %>

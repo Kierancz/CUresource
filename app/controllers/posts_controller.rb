@@ -13,7 +13,7 @@ class PostsController < ApplicationController
 
 		if @post.save
 			flash[:success] = "#{@post.title} was sucessfully created!"
-			redirect_to	department_path #id: nil		#redirects back to the current index action
+			redirect_to	@postable #id: nil		#redirects back to the current index action
 		else
 			flash[:danger] = "#{@post.title} failed to be created. Please try again later"
 			render action: 'new'

@@ -1,17 +1,4 @@
 <%= render "posts/wysihtml5" %>
-<center><h3>Posts:</h3></center>
-  <div id="posts">
-  <% for post in @posts %>
-    <div class="post">
-      <h4 class="list-group-item-heading">
-        <%= post.title %>
-      </h4>
-      <%=simple_format post.content %>
-    </div>
-  <% end %>
-  </div>
-
-
 <center><h3>Create New Post:</h3></center>
 
   <%= form_for [@postable, Post.new] do |f| %>

@@ -23,6 +23,8 @@ class CoursesController < ApplicationController
 
 	def show
 		@course = Course.find(params[:id])
+		@postable = @course
+		@posts = @course.posts
 	end
 
 	def edit

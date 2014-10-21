@@ -1,17 +1,32 @@
 class PostsController < ApplicationController
-	before_filter :load_postable
-	load_and_authorize_resource
+	before_filter :find_postable
+	load_and_authorize_resource 
 
 	def new
+		@postable = find_postable
 		@post = @postable.posts.new
 	end
 
 	def create
-		@post = @postable.posts.create(post_params)
+		@postable = find_postable
+		@post = @postable.posts.build(params[:post])
+
+		if @post.save
+			flash[:success] = "#{@post.title} was sucessfully created!"
+			redirect_to	department_path #id: nil		#redirects back to the current index action
+		else
+			flash[:danger] = "#{@post.title} failed to be created. Please try again later"
+			render action: 'new'
+		end
 	end
 
 	def show
 		@post = Post.find(params[:id])
+	end
+
+	def index
+		@postable = find_postable
+		@posts = @postable.posts
 	end
 
 	def edit
@@ -25,6 +40,7 @@ class PostsController < ApplicationController
 			flash[:success] = "Post was updated!"
 		else
 			render action: :edit
+		end
 	end
 
 	def destroy
@@ -42,8 +58,13 @@ class PostsController < ApplicationController
 			params.require(:post).permit(:title, :description, :content)
 		end
 
-		def load_postable	#gets the type of post to create (department post or course post)
-			@type = params[:postable_type].capitalize.constantize
-			@postable = @type.find(parms[:postable_id])
+		def find_postable	#gets the type of post to create
+			params.each do |name, value|
+				if name =~ /(.+)_id$/
+					return $1.classify.constantize.find(value)
+				end
+			end
+			nil
 		end
+
 end

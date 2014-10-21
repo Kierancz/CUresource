@@ -34,6 +34,9 @@ section {
 
 body { 
   padding-top: 80px; 
+  background-image: url("http://alumni.colorado.edu/wp-content/uploads/2010/10/2010_Aerial213_revisedGA.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 textarea {
@@ -98,11 +101,11 @@ footer {
   margin-top: 45px;
   padding-top: 5px;
   border-top: 1px solid $gray-light;
-  color: $gray-light;
+  color: white;
   a {
-    color: $gray;
+    color: white;
     &:hover {
-      color: $gray-darker;
+      color: $gray-light;
     }
   }
   small {

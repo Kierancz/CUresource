@@ -1,43 +1,47 @@
 <% provide(:title, '#{@course.title}') %>
 
-<div id="titlesection">
-  <div id="editlink" class="pull-left">
-  <% if current_user %>
-    <%= button_to([:edit, @course], :method => "get", :class => 'btn btn-default btn-link btn-xs') do %>
-      <span class="glyphicon glyphicon-pencil"></span>Edit <%= @course.title %>
-    <% end %>
-  <% end %>
-  </div>
-    <center><h1><b><%= @course.title %></b></h1>
-      <h3><small><%= @course.description %></small></h3><br>
-    </center>
-</div>
-<hr><br>
-
 <div class="row">
-  <div class="col-xs-12 col-md-6 col-md-offset-3">
-    <ul class="nav nav-tabs">
-      <li><a href="#info" data-target="#info" data-toggle="tab">Info</a>
-      </li>
-      <li><a href="#posts" data-target="#posts" data-toggle="tab">Posts</a>
-      </li>
-      <li><a href="#createpost" data-target="#createpost" data-toggle="tab">Create Post</a>
-      </li>
-    </ul>
+  <div class="col-xs-12 col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-body">
 
-    <div class="tab-content">
-      <div class="tab-pane active fade in" id="posts"><br>
-    		<center><h3> Posts: </h3></center>
-    	</div>
+        <div id="titlesection">
+          <div id="editlink" class="pull-left">
+            <% if current_user %>
+              <%= button_to([:edit, @course], :method => "get", :class => 'btn btn-default btn-link btn-xs') do %>
+                <span class="glyphicon glyphicon-pencil"></span>Edit <%= @course.title %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
 
-    	<div class="tab-pane" id="info"><br>
-    		<center><h3> Info: </h3></center>
-    	</div>
+          <h1><b><%= @course.title %></b><br>
+            <small><%= @course.description %></small>
+          </h1>
 
-    	<div class="tab-pane" id="createpost"><br>
-    	</div>   
-    </div> 	
+        <ul class="nav nav-tabs">
+          <li><a href="#info" data-target="#info" data-toggle="tab">Info</a>
+          </li>
+          <li><a href="#posts" data-target="#posts" data-toggle="tab">Posts</a>
+          </li>
+          <li><a href="#createpost" data-target="#createpost" data-toggle="tab">Create Post</a>
+          </li>
+        </ul>
 
+        <div class="tab-content">
+          <div class="tab-pane active fade in" id="posts"><br>
+        		<center><h3> Posts: </h3></center>
+        	</div>
 
+        	<div class="tab-pane" id="info"><br>
+        		<center><h3> Info: </h3></center>
+        	</div>
+
+        	<div class="tab-pane" id="createpost"><br>
+        	</div>   
+        </div> 	
+
+      </div>
+    </div>
   </div>
 </div>

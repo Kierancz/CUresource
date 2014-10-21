@@ -25,6 +25,9 @@ class DepartmentsController < ApplicationController
 	def show
 		id = params[:id]
 		@department = Department.find(id)
+		@postable = @department
+		@posts = @department.posts
+
 		@course = Course.new
 		@course.department_id = @department
 	end

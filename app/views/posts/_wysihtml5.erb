@@ -1,18 +1,39 @@
 <script src="js/wysihtml5-0.3.0.js"></script>
 <script src="js/jquery-1.7.2.min.js"></script>
 
-<head>
 <script type="text/javascript">
   	$(document).ready(function(){
 
     	$('.wysihtml5').each(function(i, elem) {
-      		$(elem).wysihtml5({
+      		$(elem).wysihtml5('deepExtend', {
       			"html": true,
       			"lists": false,
-      			"video": true
-    			});
-      });
-
-		})
+      			"video": true,
+      			events: {},
+				  parserRules: {
+             		classes: {
+                          href:   "url" // important to avoid XSS
+                  	},
+				    tags: {
+				      iframe: {
+				      	"check_attributes": {
+					     	"src": "url",
+					     	"width": "numbers",
+					     	"height": "numbers",
+					     	"frameborder": "numbers",
+					     },
+					  },
+				      center: {},
+				      audio: {},
+				      label: {},
+				      noembed: {},
+				      html: {},
+				      frame: {},
+				      video: {},
+				      em: {}
+				    }
+				  }
+	  		});	
+    	});
+	})
 </script>
-</head>

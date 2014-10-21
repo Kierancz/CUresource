@@ -1,20 +1,29 @@
 <%= render "posts/wysihtml5" %>
+<center><h3>Posts:</h3></center>
+  <div id="posts">
+  <% for post in @posts %>
+    <div class="post">
+      <h4 class="list-group-item-heading">
+        <%= post.title %>
+      </h4>
+      <%=simple_format post.content %>
+    </div>
+  <% end %>
+  </div>
 
-<center><h3>Add a Post:</h3></center>
-<div class="panel panel-default">
-	<div class="panel-body">
 
-    <%= form_for([@department, @department.posts.build]) do |f| %>
-      <%= f.label :title %>
-      <%= f.text_field :title, class: "form-control" %>
+<center><h3>Create New Post:</h3></center>
 
-      <%= f.label :description %>
-      <%= f.text_area :description, :rows => 3, class: "form-control" %>
+  <%= form_for [@postable, Post.new] do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "form-control" %>
 
-  	  <%= f.text_area :content, :rows => 5, placeholder: 'Enter Content Here', class: "wysihtml5" %>
+    <%= f.label :description %>
+    <%= f.text_area :description, :rows => 3, class: "form-control" %>
 
-  	  <span class="pull-left"><%= f.submit "Create Post", class: "btn btn-medium btn-primary" %></span>
-   <% end %>
+	  <%= f.text_area :content, :rows => 5, placeholder: 'Enter Content Here', class: "wysihtml5" %>
 
-	</div>      
-</div>
+	  <span class="pull-left"><%= f.submit "Create Post", class: "btn btn-medium btn-primary" %></span>
+  <% end %>
+
+

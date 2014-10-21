@@ -50,6 +50,8 @@ ActiveRecord::Schema.define(version: 20141001235303) do
     t.integer  "user_id"
     t.integer  "postable_id"
     t.string   "postable_type"
+    t.integer  "department_id"
+    t.integer  "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

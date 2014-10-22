@@ -29,7 +29,7 @@
       <div class="tab-pane" id="createdepartment"><br>
         <center><h3>Create Department:</h3></center>
         <%= form_for @newdepartment do |f| %>
-          <%= f.label "Subject" %>
+          <%= f.label "Subject" %><i>(e.g. CSCI)</i>
           <%= f.text_field :name, class: "form-control" %>
           <%= f.label :title %>
           <%= f.text_field :title, class: "form-control" %>

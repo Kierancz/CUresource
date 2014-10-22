@@ -50,7 +50,7 @@ class PostsController < ApplicationController
 		@postable = find_postable
 		@post = Post.find(params[:id])
 		if @post.destroy()
-			flash[:sucess] = "Post #{@post.title} was sucessfully destroyed!"
+			flash[:success] = "Post #{@post.title} was sucessfully destroyed!"
 		else
 			flash[:danger] = "Post failed to be destroyed. Please try again later."
 		end

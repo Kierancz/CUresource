@@ -26,4 +26,20 @@ Curesource::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  #Devise Mailer settings
+  config.action_mailer.default_url_options = { host: 'curesource.herokuapp.com' }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default :charset => "utf-8"
+  config.action_mailer.smtp_settings = {
+    enable_starttls_auto: true, 
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: ENV["GMAIL_DOMAIN"],
+    authentication: "plain", 
+    user_name: ENV["GMAIL_USERNAME"], 
+    password: ENV["GMAIL_PASSWORD"]
+  }
 end

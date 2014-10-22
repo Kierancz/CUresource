@@ -54,14 +54,7 @@ class PostsController < ApplicationController
 		else
 			flash[:danger] = "Post failed to be destroyed. Please try again later."
 		end
-
-		if @postable == "Department"
-			redirect_to department_path #change later
-		elsif @postable == "Course"
-			redirect_to department_course_path
-		else
-			redirect_to departments_path
-		end
+		redirect_to session.delete(:return_to)
 	end
 
 	private

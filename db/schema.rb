@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141022014005) do
+ActiveRecord::Schema.define(version: 20141022035422) do
 
   create_table "courses", force: true do |t|
     t.string   "title"
@@ -23,6 +23,11 @@ ActiveRecord::Schema.define(version: 20141022014005) do
     t.integer  "department_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "courses_users", force: true do |t|
+    t.integer "course_id"
+    t.integer "user_id"
   end
 
   create_table "departments", force: true do |t|
@@ -73,6 +78,7 @@ ActiveRecord::Schema.define(version: 20141022014005) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.datetime "deleted_at"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

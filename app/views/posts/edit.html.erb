@@ -1,13 +1,13 @@
-<% if current_user %>
-	<h1><b>Editing: </b><%= @post.title %></h1>
-	<hr><br>
+<% if current_user && (@post.user == current_user) %>
 
 <div class="container-fluid">
   <div class="row">
     <div class="col-xs-8 col-md-6 col-xs-offset-2 col-md-offset-3">
       <div class="panel panel-default">
         <div class="panel-body">
-     			<%= form_for(@poster, @post) do |f| %>
+          <h1><b>Editing: </b><%= @post.title %></h1>
+          <hr><br>
+     			<%= form_for [@postable, @post] do |f| %>
 
           		<%= f.label :title %>
           		<%= f.text_field :title, class: "form-control" %>
@@ -34,8 +34,12 @@
 </div>
 
 <% else %>
-<center><h1>You do not have permission to access this page</h1>
-<h2>Please login to access your Posts</h2></center>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <center><h1>You do not have permission to access this page</h1>
+    <h2>Please login to access your Posts</h2></center>
+  </div>
+</div>
 <% end %>
 
 

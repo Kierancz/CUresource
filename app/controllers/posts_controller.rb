@@ -4,12 +4,13 @@ class PostsController < ApplicationController
 
 	def new
 		@postable = find_postable
-		@post = @postable.posts.new
+		@post = @postable.posts.new(user: current_user)
 	end
 
 	def create
 		@postable = find_postable
 		@post = @postable.posts.build(params[:post])
+		@post.user = current_user
 
 		if @post.save
 			flash[:success] = "#{@post.title} was sucessfully created!"
@@ -30,13 +31,15 @@ class PostsController < ApplicationController
 	end
 
 	def edit
+		@postable = find_postable
 		@post = Post.find(params[:id])
 	end
 
 	def update
+		@postable = find_postable
 		@post = Post.find(params[:id])
 		if @post.update_attributes(post_params)
-			redirect_to @post
+			redirect_to @postable
 			flash[:success] = "Post was updated!"
 		else
 			render action: :edit
@@ -44,13 +47,21 @@ class PostsController < ApplicationController
 	end
 
 	def destroy
+		@postable = find_postable
 		@post = Post.find(params[:id])
 		if @post.destroy()
-			flash[:sucess] = "Post #{@post} was sucessfully destroyed!"
+			flash[:sucess] = "Post #{@post.title} was sucessfully destroyed!"
 		else
 			flash[:danger] = "Post failed to be destroyed. Please try again later."
 		end
-		redirect_to departments_path #change later
+
+		if @postable == "Department"
+			redirect_to department_path #change later
+		elsif @postable == "Course"
+			redirect_to department_course_path
+		else
+			redirect_to departments_path
+		end
 	end
 
 	private

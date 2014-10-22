@@ -4,7 +4,7 @@
       <div class="panel-heading">
         <h4 class="panel-title">
           <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= post.title.gsub(/\s+/, "") %>">
-            <%= post.title.capitalize %>
+            <%= post.title.capitalize %> - <small><%= post.description.capitalize %></small>
           </a>
         </h4>
       </div>
@@ -12,6 +12,23 @@
         <div class="accordian-inner">
           <%= post.content.try(:html_safe) %>
         </div>
+        <% if (post.user == current_user) || current_user.admin? %> 
+          <div class="panel-footer">
+            <span class="pull-left">
+            <% if @postable == "Department" %> 
+              <%= button_to(edit_department_post_path(id: post.id), :method => "get", :class => 'btn btn-default btn-link btn-xs') do %>
+              <span class="glyphicon glyphicon-pencil"><span class="buttontext">Edit</span></span>
+              <% end %>
+            <% else %>
+              <%= button_to(edit_department_post_path(@postable.id, id: post.id), :method => "get", :class => 'btn btn-default btn-link btn-xs') do %>
+              <span class="glyphicon glyphicon-pencil"><span class="buttontext">Edit</span></span>
+              <% end %>
+            <% end %>  
+            </span>
+            <br>
+          </div>
+
+        <% end %>
       </div>
     </div>
   <% end %>

@@ -9,7 +9,7 @@
         </h4>
       </div>
       <div id="collapse<%= post.title.gsub(/\s+/, "") %>" class="accordian-body collapse in">
-        <div class="accordian-inner">
+        <div id="postbody" class="accordian-inner">
           <%= post.content.try(:html_safe) %>
         </div>
         <% if (post.user == current_user) || current_user.admin? %> 

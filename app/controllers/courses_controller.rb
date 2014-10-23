@@ -25,6 +25,8 @@ class CoursesController < ApplicationController
 		@course = Course.find(params[:id])
 		@postable = @course
 		@posts = @course.posts
+
+		@department = Department.find(@course.department_id)
 	end
 
 	def edit

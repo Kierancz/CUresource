@@ -15,11 +15,9 @@
           </div>
           <br>
           <div id="editlink" class="pull-left">
-            <% if current_user %>
               <%= button_to(@department, :method => "get", :class => 'btn btn-default btn-link btn-xs') do %>
                 <span class="glyphicon glyphicon-chevron-left"></span>Back to <%= @department.title %>
               <% end %>
-            <% end %>
           </div>
         </div>
 

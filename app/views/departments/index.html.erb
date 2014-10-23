@@ -5,48 +5,48 @@
       <div class="panel-body">
       <h1>All Departments:</h1>
 
-    <ul class="nav nav-tabs">
-      <li class="active"> <a href="#departments" data-target="#departments" data-toggle="tab">Departments</a>
-      </li>
-      <% if can? :create, Department %>
-      <li><a href="#createdepartment" data-target="#createdepartment" data-toggle="tab">Create Department</a>
-      </li>
-      <% end %>
-    </ul>
+      <ul class="nav nav-tabs">
+        <li class="active"> <a href="#departments" data-target="#departments" data-toggle="tab">Departments</a>
+        </li>
+        <% if current_user && (can? :create, Department) %>
+          <li><a href="#createdepartment" data-target="#createdepartment" data-toggle="tab">Create Department</a>
+          </li>
+        <% end %>
+      </ul>
 
-    <div class="tab-content">
-      <div class="tab-pane active fade in" id="departments"><br>
-        <% @departments.each do |department| %>
-          <%= link_to(department, :class => "list-group-item") do %>
-            <h4 class="list-group-item-heading">
-              <%= department.title %><span class="badge pull-right"><%= department.courses.count %> Courses</span>
-            </h4>
+      <div class="tab-content">
+        <div class="tab-pane active fade in" id="departments"><br>
+          <% @departments.each do |department| %>
+            <%= link_to(department, :class => "list-group-item") do %>
+              <h4 class="list-group-item-heading">
+                <%= department.title %><span class="badge pull-right"><%= department.courses.count %> Courses</span>
+              </h4>
+            <% end %>
           <% end %>
-        <% end %>
-      </div>
+        </div>
 
-    <% if can? :create, Department %>
-      <div class="tab-pane" id="createdepartment"><br>
-        <center><h3>Create Department:</h3></center>
-        <%= form_for @newdepartment do |f| %>
-          <%= f.label "Subject" %><i>(e.g. CSCI)</i>
-          <%= f.text_field :name, class: "form-control" %>
-          <%= f.label :title %>
-          <%= f.text_field :title, class: "form-control" %>
-          <%= f.label "Description (Optional)"%>
-          <%= f.text_area :description, :rows => 3, class: "form-control" %>
-          <%= f.label "Banner Url (Optional)" %>
-          <%= f.url_field :banner %>
-          <span class="pull-left">
-            <%= f.submit "Create New Department", class: "btn btn-large btn-primary" %>
-          </span>
+      <% if current_user && (can? :create, Department) %>
+        <div class="tab-pane" id="createdepartment"><br>
+          <center><h3>Create Department:</h3></center>
+          <%= form_for @newdepartment do |f| %>
+            <%= f.label "Subject" %><i> (e.g. CSCI)</i>
+            <%= f.text_field :name, class: "form-control" %>
+            <%= f.label :title %>
+            <%= f.text_field :title, class: "form-control" %>
+            <%= f.label :description%><i> (Optional)</i>
+            <%= f.text_area :description, :rows => 3, class: "form-control" %>
+            <%= f.label :banner %><i> (Optional)</i>
+            <%= f.url_field :banner %>
+            <span class="pull-left">
+              <%= f.submit "Create New Department", class: "btn btn-large btn-primary" %>
+            </span>
+          <% end %>
+          </div>
         <% end %>
+
       </div>
-    </div>
-    <% end %>
     
       </div>
     </div>
-
   </div>
 </div>

@@ -1,0 +1,49 @@
+<% provide(:title, @user.email) %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+      <div class="panel panel-default">
+        <div class="panel-body">
+
+          <h1>Dashboard</h1>
+          <div class="row">
+            <div class="col-md-6">
+              <h2 style="margin: 4px"><b><%= @user.email %></b></h2>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-md-4">
+              <center><h3><%= @user.posts.count %><br>
+              <b><small>Posts</small></b></h3></center>
+            </div>
+            <div class="col-md-4">
+              <center><h3><%= time_ago_in_words(@user.created_at.to_time) %><br>
+              <b><small>Age</small></b></h3></center>
+            </div>
+            <div class="col-md-4">
+              <% if @user.admin? %>
+                <center><h3>Administrator<br><b><small>Role</small></b></h3></center>
+              <% elsif @user.instructor? %>
+                <center><h3>Instructor<br><b><small>Role</small></b></h3></center>
+              <% else %>
+                <center><h3>Student<br><b><small>Role</small></b></h3></center>
+              <% end %>
+            </div>
+          </div>
+          <hr>
+
+          <center><h3>My Courses:</h3></center><hr><br>
+
+          <%= form_for @user do |f| %>
+            <%= f.label :rolekey, "Role Key" %>
+            <%= f.text_field :rolekey, autocomplete: "off", class: "form-control" %>
+
+            <span class="pull-left"><%= f.submit "Submit Key", class: "btn btn-medium btn-primary" %></span>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

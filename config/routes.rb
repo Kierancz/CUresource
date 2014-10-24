@@ -2,7 +2,9 @@ Curesource::Application.routes.draw do
   devise_for :users
   devise_scope :users do
     match '/users/:id',       to: "users#show",    via: 'get'
+    match '/users/:id',       to: "users#show",    via: 'patch'
   end
+  resources :users, only: [:show]
   resources :departments do
     resources :courses
     resources :posts
@@ -10,9 +12,6 @@ Curesource::Application.routes.draw do
   resources :courses do
     resources :posts
   end
-
-  #map.resources :departments, has_many: :posts
-  #map.resources :courses, has_many: :posts
 
   root 'pages#home'
   match '/help',                        to: 'pages#help',               via: 'get'

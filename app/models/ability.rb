@@ -8,7 +8,9 @@ class Ability
 
     alias_action :create, :read, :update, :destroy, :to => :crud
 
-    if user.admin?
+    if user.admin
+      can :manage, :all
+    elsif user.instructor
       can :manage, :all
     elsif user
       can :crud, :all #change later

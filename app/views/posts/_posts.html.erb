@@ -12,7 +12,7 @@
         <div id="postbody" class="accordian-inner">
           <%= post.content.try(:html_safe) %>
         </div>
-        <% if (post.user == current_user) || current_user.admin? %> 
+        <% if current_user && ((post.user == current_user) || (current_user.role == "admin")) %> 
           <div class="panel-footer">
             <span class="pull-left">
             <% if @postable == "Department" %> 

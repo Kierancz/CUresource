@@ -6,10 +6,10 @@ class UsersController < ApplicationController
 
 		#sets user roles based on entered role key
 		if @user.rolekey == ENV["INSTRUCTOR_ROLE"]
-			@user.instructor = true
+			@user.instructor? = true
 		end
 		if @user.rolekey == ENV["ADMIN_ROLE"]
-			@user.admin = true
+			@user.admin? = true
 		end
 	end
 

@@ -42,9 +42,10 @@
             <%= render "posts/posts" %>
         	</div>
 
-        	<div class="tab-pane" id="info"><br>
-        		<center><h3> Info: </h3></center>
-        	</div>
+          <div class="tab-pane" id="info"><br>
+            <center><h3>Course Info:</h3></center>
+            <%= @course.info %>
+          </div>
 
         	<div class="tab-pane" id="createpost"><br>
             <%= render "posts/form" %>

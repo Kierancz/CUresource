@@ -47,6 +47,11 @@
             <% end %>
           </div>
 
+          <div class="tab-pane" id="info"><br>
+            <center><h3>Department Info:</h3></center>
+            <%= @department.info %>
+          </div>
+
           <div class="tab-pane" id="posts"><br>
             <center><h3>Department Posts:</h3></center>
             <%= render "posts/posts" %>
@@ -66,10 +71,10 @@
                 <%= f.number_field :number, class: "form-control" %>
                 <%= f.label :title %>
                 <%= f.text_field :title, class: "form-control" %>
-                <%= f.label "Description (Optional)"%>
+                <%= f.label :description %><i>(Optional)</i>
                 <%= f.text_area :description, :rows => 3, class: "form-control" %>
-                <%= f.label "Banner Url (Optional)" %>
-                <%= f.url_field :banner %>
+                <%= f.label :banner %><i>(Optional)</i>
+                <%= f.url_field :banner, class: "form-control" %>
                 <span class="pull-left">
                   <%= f.submit "Create New Course", class: "btn btn-large btn-primary" %>
                 </span>
@@ -78,7 +83,7 @@
 
           <% end %>
         </div>
-        
+
       </div>
     </div>
   </div>

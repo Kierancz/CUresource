@@ -8,14 +8,12 @@ class Ability
 
     alias_action :create, :read, :update, :destroy, :to => :crud
 
-    if user.admin
+    if user.role == "admin"
       can :manage, :all
-    elsif user.instructor
+    elsif user.role == "instructor"
       can :manage, :all
-    elsif user
-      can :crud, :all #change later
     else
-      can :read, :all  
+      can :crud, :all  
       #[Post, User]
       #can :index, Department
       #can :index, Course

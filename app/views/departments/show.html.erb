@@ -49,7 +49,7 @@
 
           <div class="tab-pane" id="info"><br>
             <center><h3>Department Info:</h3></center>
-            <%= @department.info %>
+            <%= @department.info.try(:html_safe) %>
           </div>
 
           <div class="tab-pane" id="posts"><br>

@@ -19,11 +19,11 @@
               <span class="glyphicon glyphicon-chevron-left"></span>Back to <%= @department.title %>
             <% end %>
           </div>
-        </div>
 
           <h1><b><%= @course.title %></b><br>
             <h4><%= @course.description %></h4>
           </h1>
+        </div>
 
         <ul class="nav nav-tabs">
           <li><a href="#info" data-target="#info" data-toggle="tab">Info</a>
@@ -44,7 +44,7 @@
 
           <div class="tab-pane" id="info"><br>
             <center><h3>Course Info:</h3></center>
-            <%= @course.info %>
+            <%= @course.info.try(:html_safe) %>
           </div>
 
         	<div class="tab-pane" id="createpost"><br>

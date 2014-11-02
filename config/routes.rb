@@ -1,10 +1,10 @@
 Curesource::Application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { registrations: "users/registrations" }
   devise_scope :users do
     match '/users/:id',       to: "users#show",    via: 'get'
     match '/users/:id',       to: "users#show",    via: 'patch'
   end
-  resources :users, only: [:show]
+  resources :users, only: [:show, :index]
   resources :departments do
     resources :courses
     resources :posts

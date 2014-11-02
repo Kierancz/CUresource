@@ -25,7 +25,7 @@
       <div class="panel panel-default">
         <div class="panel-body">
           <h3>Delete this Post forever:</h3>
-      		<span class="pull-left"><%= button_to('Delete Post', { :action => "destroy", :id => @post.id },
+      		<span class="pull-left"><%= button_to('Delete Post', { action: "destroy", id: @post.id },
           method: "delete", data: { confirm: 'Are you sure?', disable_with: 'loading...' }, class: "btn btn-large btn-danger") %></span>
         </div>
       </div>

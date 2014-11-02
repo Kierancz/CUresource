@@ -1,3 +1,4 @@
+<% if current_user %>
 <% provide(:title, @user.email) %>
 <div class="container-fluid">
   <div class="row">
@@ -8,6 +9,7 @@
           <h1>Dashboard</h1>
           <div class="row">
             <div class="col-md-6">
+              <h3><%= @user.name unless @user.name.blank? %></h3>
               <h2 style="margin: 4px"><b><%= @user.email %></b></h2>
             </div>
           </div>
@@ -22,24 +24,24 @@
               <b><small>Age</small></b></h3></center>
             </div>
             <div class="col-md-4">
-              <% if @user.admin? %>
-                <center><h3>Administrator<br><b><small>Role</small></b></h3></center>
-              <% elsif @user.instructor? %>
-                <center><h3>Instructor<br><b><small>Role</small></b></h3></center>
-              <% else %>
-                <center><h3>Student<br><b><small>Role</small></b></h3></center>
-              <% end %>
+              <center><h3>
+                <% if @current_user.role == "admin" %>Administrator<br>
+                <% elsif @current_user.role == "instructor" %>Instructor<br> 
+                <% else %>Student<br>
+                <% end %>
+              <b><small>Role</small></b></h3></center>
             </div>
           </div>
           <hr>
 
           <center><h3>My Courses:</h3></center><hr><br>
 
-          <%= form_for @user do |f| %>
-            <%= f.label :rolekey, "Role Key" %>
-            <%= f.text_field :rolekey, autocomplete: "off", class: "form-control" %>
+          <% if current_user.role == "admin" %>
+            <%= form_for @user do |f| %>
+            <%= f.collection_select :role, User::ROLES, :to_s, :humanize %>
 
-            <span class="pull-left"><%= f.submit "Submit Key", class: "btn btn-medium btn-primary" %></span>
+              <span class="pull-left"><%= f.submit "Submit Role", class: "btn btn-medium btn-primary" %></span>
+            <% end %>
           <% end %>
 
         </div>
@@ -47,3 +49,4 @@
     </div>
   </div>
 </div>
+<% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141024063329) do
+ActiveRecord::Schema.define(version: 20141101204704) do
 
   create_table "courses", force: true do |t|
     t.string   "title"
@@ -80,8 +80,7 @@ ActiveRecord::Schema.define(version: 20141024063329) do
     t.datetime "confirmation_sent_at"
     t.datetime "deleted_at"
     t.string   "name"
-    t.boolean  "instructor"
-    t.string   "rolekey"
+    t.string   "role"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

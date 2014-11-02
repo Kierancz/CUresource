@@ -43,7 +43,7 @@ class DepartmentsController < ApplicationController
 			redirect_to @department
 			flash[:success] = "#{@department.title} department was successfully updated!"
 		else
-			render :action => 'edit'
+			render action: 'edit'
 		end
 	end
 

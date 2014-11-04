@@ -14,16 +14,17 @@
             </div><br>
           <% end %>
 
-          <% unless current_user.favorite_courses.exists?(id: @course.id) %>
-            <%= button_to(favorite_courses_path(course_id: @course), method: :post, class: 'btn btn-default btn-link btn-xs') do %>
-              <span class="glyphicon glyphicon-heart-empty"></span>Favorite
-            <% end %>
-          <% else %>
-            <%= button_to(favorite_course_path(@course), method: :delete, class: 'btn btn-default btn-link btn-xs') do %>
-              <span class="glyphicon glyphicon-heart"></span>Unfavorite
+          <% if current_user %>
+            <% unless current_user.favorite_courses.exists?(id: @course.id) %>
+              <%= button_to(favorites_path(course_id: @course), method: :post, class: 'btn btn-default btn-link btn-xs') do %>
+                <span class="glyphicon glyphicon-heart-empty"></span>Favorite
+              <% end %>
+            <% else %>
+              <%= button_to(favorite_path(course_id: @course), method: :delete, class: 'btn btn-default btn-link btn-xs') do %>
+                <span class="glyphicon glyphicon-heart"></span>Unfavorite
+              <% end %>
             <% end %>
           <% end %>
-
           
           <div id="editlink" class="pull-left">
             <%= button_to(@department, method: "get", class: 'btn btn-default btn-link btn-xs') do %>

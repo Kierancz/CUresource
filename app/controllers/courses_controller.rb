@@ -28,22 +28,6 @@ class CoursesController < ApplicationController
 		@posts = @course.posts
 	end
 
-	def favorite
-		@course = Course.find(params[:id])
-		type = params[:type]
-	
-		if type == "favorite"
-			current_user.favorites.build(favoritable: @course)
-			redirect_to :back
-			flash[:success] = "#{@course.title} was added to your courses!"
-		elsif type == "unfavorite"
-			current_user.favorites.delete(@course)
-			redirect_to :back
-		else #type missing
-			redirect_to :back, notice: 'Nothing happend'
-		end
-	end
-
 	def edit
 		@course = Course.find(params[:id])
 	end

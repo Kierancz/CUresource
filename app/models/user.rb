@@ -6,10 +6,9 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :courses, -> { uniq }
   has_many :posts
-  has_many :favorite_posts
-  has_many :favorites, through: :favorite_posts, source: :course #department?
+  has_many :favorites
+  has_many :favorite_courses, through: :favorites, source: :favoritable, source_type: 'Course'
 
   ROLES = %w[admin instructor]
-
 
 end

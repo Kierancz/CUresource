@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141101204704) do
+ActiveRecord::Schema.define(version: 20141104020159) do
 
   create_table "courses", force: true do |t|
     t.string   "title"
@@ -47,6 +47,17 @@ ActiveRecord::Schema.define(version: 20141101204704) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "favorites", force: true do |t|
+    t.integer  "favoritable_id"
+    t.string   "favoritable_type"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "favorites", ["favoritable_id", "favoritable_type"], name: "index_favorites_on_favoritable_id_and_favoritable_type"
+  add_index "favorites", ["user_id"], name: "index_favorites_on_user_id"
 
   create_table "posts", force: true do |t|
     t.string   "title"

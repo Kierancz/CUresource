@@ -12,6 +12,7 @@ Curesource::Application.routes.draw do
   resources :courses do
     resources :posts
   end
+  resources :favorite_courses, only: [:create, :destroy]
 
   root 'pages#home'
   match '/help',                        to: 'pages#help',               via: 'get'

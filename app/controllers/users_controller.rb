@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 	def show
 		@user = User.find(params[:id])
 		@user.role = params[:role]
-		#sets user roles based on entered role key
+		@courses = @user.favorite_courses
 	end
 
 	def index

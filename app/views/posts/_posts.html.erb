@@ -12,7 +12,7 @@
         <div id="postbody" class="accordian-inner">
           <%= post.content.try(:html_safe) %>
         </div>
-        <% if current_user && ((post.user == current_user) || current_user.admin?) %> 
+        <% if current_user && ((post.user == current_user) || (current_user.role == "admin")) %> 
           <div class="panel-footer">
             <span class="pull-right">
               <small>Posted: <%= post.user.name unless post.user.name.blank? %> 
@@ -20,14 +20,15 @@
             </span>
             <span class="pull-left">
             <% if @postable == "Department" %> 
-              <%= button_to(edit_department_post_path(id: post.id), method: "get", class: 'btn btn-default btn-link btn-xs') do %>
+              <%= button_to(edit_department_post_path(id: post.id), method: :get, class: 'btn btn-default btn-link btn-xs') do %>
               <span class="glyphicon glyphicon-pencil"><span class="buttontext">Edit</span></span>
               <% end %>
             <% else %>
-              <%= button_to(edit_department_post_path(@postable.id, id: post.id), method: "get", class: 'btn btn-default btn-link btn-xs') do %>
+              <%= button_to(edit_department_post_path(@postable.id, id: post.id), method: :get, class: 'btn btn-default btn-link btn-xs') do %>
               <span class="glyphicon glyphicon-pencil"><span class="buttontext">Edit</span></span>
               <% end %>
-            <% end %>  
+            <% end %> 
+
             </span>
             <br>
           </div>

@@ -13,9 +13,9 @@ class FavoritesController < ApplicationController
 	def create
 		@model = set_model
 		if Favorite.create(favoritable: @model, user: current_user)
-			redirect_to @model, notice: " #{@model.title} has been favorited!"
+			redirect_to :back, notice: " #{@model.title} has been favorited!"
 		else
-			redirect_to @model, alert: 'Something went wrong... check back later'
+			redirect_to :back, alert: 'Something went wrong... check back later'
 		end
 	end
 

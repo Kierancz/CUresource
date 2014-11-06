@@ -11,8 +11,8 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
-		@user.role = params[:role]
 		@courses = @user.favorite_courses
+		@posts = @user.favorite_posts
 	end
 
 	def index

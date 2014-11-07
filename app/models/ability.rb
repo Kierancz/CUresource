@@ -12,11 +12,10 @@ class Ability
       can :manage, :all
     elsif user.role == "instructor"
       can :manage, :all
-    else
-      can :crud, :all  
-      #[Post, User]
-      #can :index, Department
-      #can :index, Course
+    else #student role 
+      [Post, User]
+      can :index, :read, Department
+      can :index, :read, Course
     end
     #
     # The first argument to `can` is the action you are giving the user 

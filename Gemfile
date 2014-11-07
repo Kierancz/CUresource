@@ -31,6 +31,8 @@ gem 'coffee-rails', '4.0.1'
 gem 'jquery-rails', '3.1.0'
 gem 'turbolinks', '1.1.1'
 gem 'dalli'
+gem 'acts_as_commentable'
+gem 'jquery-validation-rails'
 
 group :development, :test do
   gem 'sqlite3'

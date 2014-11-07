@@ -17,3 +17,5 @@
 //= require bootstrap-wysihtml5/b3
 //= require bootstrap-wysihtml5/locales/es-ES
 //= require_tree .
+//= require jquery.validate
+//= require jquery.validate.additional-methods

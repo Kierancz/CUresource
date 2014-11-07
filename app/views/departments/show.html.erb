@@ -19,18 +19,18 @@
         </h1>
 
         <ul class="nav nav-tabs">
-          <li><a href="#info" data-target="#info" data-toggle="tab">Info</a>
+          <li><a href="#info" data-target="#info" data-toggle="tab"><span class="glyphicon glyphicon-info-sign"></span> Info</a>
           </li>
-          <li class="active"> <a href="#courses" data-target="#courses" data-toggle="tab">Courses</a>
+          <li class="active"> <a href="#courses" data-target="#courses" data-toggle="tab"><span class="badge"><%= @department.courses.count %></span> Courses </a>
           </li>
           <% if current_user && (can? :update, Department) %>
-          <li><a href="#createcourse" data-target="#createcourse" data-toggle="tab">Create Course</a>
+          <li><a href="#createcourse" data-target="#createcourse" data-toggle="tab"><span class="glyphicon glyphicon-plus"></span>New Course</a>
           </li>
           <% end %>
-          <li><a href="#posts" data-target="#posts" data-toggle="tab">Posts</a>
+          <li><a href="#posts" data-target="#posts" data-toggle="tab"><span class="badge"><%= @department.posts.count %></span> Posts</a>
           </li>
           <% if current_user && (can? :create, Post) %>
-          <li><a href="#createpost" data-target="#createpost" data-toggle="tab">Create Post</a>
+          <li><a href="#createpost" data-target="#createpost" data-toggle="tab"><span class="glyphicon glyphicon-pencil"></span> Create Post</a>
           <% end %>
           </li>
         </ul>

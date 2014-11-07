@@ -4,5 +4,8 @@ class Post < ActiveRecord::Base
 	belongs_to :department, counter_cache: true	#for counting number of posts in department
 	belongs_to :course, counter_cache: true
 	has_many :favorites, as: :favoritable
+
+	validates :title, presence: true, uniqueness: true
+	validates :content, presence: true
 	#validates :department_id, :course_id, presence: true
 end

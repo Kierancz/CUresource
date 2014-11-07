@@ -9,7 +9,7 @@
           <% if current_user && current_user.role == ("admin" || "instructor") %>
             <div id="editlink" class="pull-left">
               <%= button_to([:edit, @course], method: "get", class: 'btn btn-default btn-link btn-xs') do %>
-                <span class="glyphicon glyphicon-pencil"></span>Edit <%= @course.title %>
+                <span class="glyphicon glyphicon-pencil"></span> Edit <%= @course.title %>
               <% end %>
             </div><br>
           <% end %>
@@ -17,19 +17,22 @@
           <% if current_user %>
             <% unless current_user.favorite_courses.exists?(id: @course.id) %>
               <%= button_to(favorites_path(course_id: @course), method: :post, class: 'btn btn-default btn-link btn-xs') do %>
-                <span class="glyphicon glyphicon-heart-empty"></span>Favorite
+                <span class="glyphicon glyphicon-heart-empty"></span> Favorite
               <% end %>
             <% else %>
               <%= button_to(favorite_path(course_id: @course), method: :delete, class: 'btn btn-default btn-link btn-xs') do %>
-                <span class="glyphicon glyphicon-heart"></span>Unfavorite
+                <span class="glyphicon glyphicon-heart"></span> Unfavorite
               <% end %>
             <% end %>
           <% end %>
           
           <div id="editlink" class="pull-left">
             <%= button_to(@department, method: "get", class: 'btn btn-default btn-link btn-xs') do %>
-              <span class="glyphicon glyphicon-chevron-left"></span>Back to <%= @department.title %>
+              <span class="glyphicon glyphicon-chevron-left"></span> Back to <%= @department.title %>
             <% end %>
+          </div>
+
+          <div class="smalltext" style="position: absolute; top: 8px; right: 26px; width: 200px; text-align:right"><p><b>Updated: </b><%= time_ago_in_words(@course.updated_at.to_time) unless @course.updated_at.blank? %> ago </p>
           </div>
 
           <h1><b><%= @course.title %></b><br>
@@ -38,12 +41,12 @@
         </div>
 
         <ul class="nav nav-tabs">
-          <li><a href="#info" data-target="#info" data-toggle="tab">Info</a>
+          <li><a href="#info" data-target="#info" data-toggle="tab"><span class="glyphicon glyphicon-info-sign"></span> Info</a>
           </li>
-          <li class="active"><a href="#posts" data-target="#posts" data-toggle="tab">Posts</a>
+          <li class="active"><a href="#posts" data-target="#posts" data-toggle="tab"><span class="badge"><%= @course.posts.count %></span> Posts</a>
           </li>
           <% if current_user %>
-          <li><a href="#createpost" data-target="#createpost" data-toggle="tab">Create Post</a>
+          <li><a href="#createpost" data-target="#createpost" data-toggle="tab"><span class="glyphicon glyphicon-pencil"></span> Create Post</a>
           <% end %>
           </li>
         </ul>

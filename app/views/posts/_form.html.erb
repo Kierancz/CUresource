@@ -1,15 +1,16 @@
 <% if current_user %>
 <%= render "posts/wysihtml5" %>
 <center><h3>Create New Post:</h3></center>
+<%= @postable.errors.full_messages.first if @postable.errors.any? %>
 
   <%= form_for [@postable, Post.new] do |f| %>
     <%= f.label :title %>
     <%= f.text_field :title, class: "form-control" %>
 
-    <%= f.label :description %>
-    <%= f.text_area :description, :rows => 3, class: "form-control" %>
+    <%= f.label :description %> <i> (Optional) </i>
+    <%= f.text_area :description, rows: 3, class: "form-control" %>
 
-	  <%= f.text_area :content, :rows => 5, placeholder: 'Enter Content Here', class: "wysihtml5" %>
+	  <%= f.text_area :content, rows: 5, placeholder: 'Enter Content Here', class: "wysihtml5" %>
 
 	  <span class="pull-left"><%= f.submit "Create Post", class: "btn btn-medium btn-primary" %></span>
   <% end %>

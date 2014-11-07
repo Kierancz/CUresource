@@ -15,10 +15,10 @@ class PostsController < ApplicationController
 
 		if @post.save
 			flash[:success] = "#{@post.title} was sucessfully created!"
-			redirect_to	@postable #id: nil		#redirects back to the current index action
+			redirect_to	request.referer + '#posts'
 		else
-			flash[:danger] = "#{@post.title} failed to be created. Please try again later"
-			render action: 'new'
+			redirect_to request.referer + '#createpost'
+			flash[:danger] = "#{@post.title} requires a Title and Content."
 		end
 	end
 
@@ -55,7 +55,12 @@ class PostsController < ApplicationController
 		else
 			flash[:danger] = "Post failed to be destroyed. Please try again later."
 		end
-		redirect_to session.delete(:return_to)
+		id = @postable.id
+		if @postable = "Department"
+			redirect_to path_to_url(department_path(id)) + '#posts'
+		else
+			redirect_to path_to_url(course_path(id)) + '#posts'
+		end
 	end
 
 	private
@@ -70,6 +75,10 @@ class PostsController < ApplicationController
 				end
 			end
 			nil
+		end
+
+		def path_to_url(path)
+  	"#{request.protocol}#{request.host_with_port.gsub(/:80$/,"")}/#{path.sub(/^\//,"")}"
 		end
 
 end

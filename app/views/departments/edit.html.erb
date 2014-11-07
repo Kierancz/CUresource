@@ -1,4 +1,4 @@
-<% if current_user %>
+<% if current_user.role == "admin" %>
 <%= render "posts/wysihtml5" %>
 <div class="container-fluid">
   <div class="row">

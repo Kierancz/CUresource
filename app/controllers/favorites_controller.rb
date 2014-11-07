@@ -11,7 +11,6 @@ class FavoritesController < ApplicationController
 	#end
 
 	def create
-		@model = set_model
 		if Favorite.create(favoritable: @model, user: current_user)
 			redirect_to :back, notice: " #{@model.title} has been favorited!"
 		else
@@ -25,9 +24,8 @@ class FavoritesController < ApplicationController
 	#end
 
 	def destroy
-		@model = set_model
 		Favorite.where(favoritable_id: @model.id, user_id: current_user.id).first.destroy
-		redirect_to @model, notice: "#{@model.title} is no longer in favorites."
+		redirect_to :back, notice: "#{@model.title} is no longer in favorites."
 	end
 
 	private
@@ -39,7 +37,7 @@ class FavoritesController < ApplicationController
 	def set_model
 		params.each do |name, value|
 			if name =~ /(.+)_id$/
-				return $1.classify.constantize.find(value)
+				@model = $1.classify.constantize.find(value)
 			end
 		end
 		nil

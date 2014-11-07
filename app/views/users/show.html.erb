@@ -45,15 +45,23 @@
           <div class="tab-content">
             <div class="tab-pane active fade in" id="course"><br>
               <% @courses.each do |course| %>
-                <%= link_to(course, :class => "list-group-item") do %>
-                  <h4 class="list-group-item-heading">
-                    <%= course.title %>
-                  </h4>
+                <% if Department.exists?(course.department_id) %>
+                  <%= link_to(course, class: "list-group-item") do %>
+                    <h4 class="list-group-item-heading">
+                      <%= course.title %>
+                    </h4>
+                  <% end %>
                 <% end %>
               <% end %>
             </div>
 
             <div class="tab-pane" id="posts"><br>
+              <%= render "posts/posts" %>
+              <% @posts.each do |post| %>
+                  <h4 class="list-group-item-heading">
+                    <%= post.title %>
+                  </h4>
+              <% end %>
             </div>
           </div>
 

@@ -7,5 +7,5 @@ class Post < ActiveRecord::Base
 
 	validates :title, presence: true, uniqueness: true
 	validates :content, presence: true
-	#validates :department_id, :course_id, presence: true
+	acts_as_commentable
 end

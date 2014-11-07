@@ -12,28 +12,41 @@
         <div id="postbody" class="accordian-inner">
           <%= post.content.try(:html_safe) %>
         </div>
-        <% if current_user && ((post.user == current_user) || (current_user.role == "admin")) %> 
           <div class="panel-footer">
             <span class="pull-right">
               <small>Posted: <%= post.user.name unless post.user.name.blank? %> 
                 <%= time_ago_in_words(post.created_at.to_time) %> ago</small>
             </span>
+          <% if current_user && ((post.user == current_user) || (current_user.role == "admin")) && @postable %> 
             <span class="pull-left">
-            <% if @postable == "Department" %> 
-              <%= button_to(edit_department_post_path(id: post.id), method: :get, class: 'btn btn-default btn-link btn-xs') do %>
-              <span class="glyphicon glyphicon-pencil"><span class="buttontext">Edit</span></span>
+              <% if @postable == "Department" %> 
+                <%= button_to(edit_department_post_path(id: post.id), method: :get, class: 'btn btn-default btn-link btn-xs') do %>
+                <span class="glyphicon glyphicon-pencil"><span class="buttontext">Edit</span></span>
+                <% end %>
+              <% else %>
+                <%= button_to(edit_course_post_path(@postable.id, id: post.id), method: :get, class: 'btn btn-default btn-link btn-xs') do %>
+                <span class="glyphicon glyphicon-pencil"><span class="buttontext">Edit</span></span>
+                <% end %>
+              <% end %>
+            </span>
+          <% end %>
+
+          <% if current_user %>
+          <span class="pull-left">
+            <% unless current_user.favorite_posts.exists?(id: post.id) %>
+              <%= button_to(favorites_path(post_id: post), method: :post, class: 'btn btn-default btn-link btn-xs') do %>
+                <span class="glyphicon glyphicon-heart-empty"></span> Favorite
               <% end %>
             <% else %>
-              <%= button_to(edit_department_post_path(@postable.id, id: post.id), method: :get, class: 'btn btn-default btn-link btn-xs') do %>
-              <span class="glyphicon glyphicon-pencil"><span class="buttontext">Edit</span></span>
+              <%= button_to(favorite_path(post_id: post), method: :delete, class: 'btn btn-default btn-link btn-xs') do %>
+                <span class="glyphicon glyphicon-heart"></span> Unfavorite
               <% end %>
-            <% end %> 
-
-            </span>
+            <% end %>
+          </span>
+          <% end %>
             <br>
           </div>
 
-        <% end %>
       </div>
     </div>
   <% end %>

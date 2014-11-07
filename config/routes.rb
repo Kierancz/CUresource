@@ -13,6 +13,7 @@ Curesource::Application.routes.draw do
     resources :posts
   end
   resources :favorites, only: [:create, :destroy]
+  resources :comments, path_prefix: '/:commentable_type/:commentable_id'
 
   root 'pages#home'
   match '/help',                        to: 'pages#help',               via: 'get'

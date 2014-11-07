@@ -24,7 +24,7 @@
           <li class="active"> <a href="#courses" data-target="#courses" data-toggle="tab"><span class="badge"><%= @department.courses.count %></span> Courses </a>
           </li>
           <% if current_user && (can? :update, Department) %>
-          <li><a href="#createcourse" data-target="#createcourse" data-toggle="tab"><span class="glyphicon glyphicon-plus"></span>New Course</a>
+          <li><a href="#createcourse" data-target="#createcourse" data-toggle="tab"><span class="glyphicon glyphicon-plus"></span> New Course</a>
           </li>
           <% end %>
           <li><a href="#posts" data-target="#posts" data-toggle="tab"><span class="badge"><%= @department.posts.count %></span> Posts</a>

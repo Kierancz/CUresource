@@ -55,25 +55,10 @@
               <% end %>
             </div>
 
-            <div class="tab-pane" id="posts"><br>
+            <div class="tab-pane" id="post"><br>
               <%= render "posts/posts" %>
-              <% @posts.each do |post| %>
-                  <h4 class="list-group-item-heading">
-                    <%= post.title %>
-                  </h4>
-              <% end %>
             </div>
           </div>
-
-          <% if current_user.role == "admin" %>
-            <center><h3>Manage Role:</h3></center><hr><br>
-            <%= form_for @user do |f| %>
-            <%= f.label :role %>
-            <%= f.collection_select :role, User::ROLES, :to_s, :humanize %>
-
-              <span class="pull-left"><%= f.submit "Submit Role", class: "btn btn-medium btn-primary" %></span>
-            <% end %>
-          <% end %>
 
         </div>
       </div>

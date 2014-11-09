@@ -1,4 +1,4 @@
-<% if current_user && (@post.user == current_user) %>
+<% if current_user && (can? :update, Post) %>
 <%= render "posts/wysihtml5" %>
 <div class="container-fluid">
   <div class="row">

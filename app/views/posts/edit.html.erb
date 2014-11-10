@@ -1,4 +1,4 @@
-<% if post.user == current_user || current_user.admin_or_instr? %>
+<% if @post.user == current_user || current_user.admin_or_instr? %>
 <%= render "posts/wysihtml5" %>
 <div class="container-fluid">
   <div class="row">

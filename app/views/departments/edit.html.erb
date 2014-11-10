@@ -1,4 +1,4 @@
-<% if current_user.role == "admin" %>
+<% if current_user.admin_or_instr? %>
 <%= render "posts/wysihtml5" %>
 <div class="container-fluid">
   <div class="row">
@@ -30,7 +30,7 @@
       <div class="panel panel-default">
         <div class="panel-body">
           <h3>Delete the <%= @department.title %> department:</h3>
-      		<span class="pull-left"><%= button_to('Delete Department', { :action => "destroy", :id => @department.id },
+      		<span class="pull-left"><%= button_to('Delete Department', { action: "destroy", id: @department.id },
           method: "delete", data: { confirm: 'Are you sure?', disable_with: 'loading...' }, class: "btn btn-large btn-danger") %></span>
         </div>
       </div>

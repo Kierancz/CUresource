@@ -8,4 +8,13 @@ class Post < ActiveRecord::Base
 	validates :title, presence: true, uniqueness: true
 	validates :content, presence: true
 	acts_as_commentable
+
+	#scope :recent, lambda { order("posts.updated_at DESC") }
+	#scope :fav, 
+	#	lambda { 
+	#	select("posts.*, count(favorites.id) AS favorite_post_count").
+	#	joins(:favorite_posts).
+	#	group("posts.id").
+	#	order("favorite_post_count DESC")
+	#	}
 end

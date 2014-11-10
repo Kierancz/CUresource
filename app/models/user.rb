@@ -12,4 +12,8 @@ class User < ActiveRecord::Base
 
   ROLES = %w[admin instructor]
 
+  def admin_or_instr?
+    self.role == ("admin" || "instructor")
+  end 
+
 end

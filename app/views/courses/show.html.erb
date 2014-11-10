@@ -6,7 +6,7 @@
       <div class="panel-body">
 
         <div id="titlesection">
-          <% if current_user && current_user.role == ("admin" || "instructor") %>
+          <% if current_user && current_user.admin_or_instr? %>
             <div id="editlink" class="pull-left">
               <%= button_to([:edit, @course], method: "get", class: 'btn btn-default btn-link btn-xs') do %>
                 <span class="glyphicon glyphicon-pencil"></span> Edit <%= @course.title %>

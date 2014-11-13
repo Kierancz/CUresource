@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.0'
+ruby '2.1.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.4'
@@ -19,7 +19,7 @@ gem 'bcrypt-ruby', '3.1.2'
 gem 'font-awesome-rails'
 gem 'bootstrap-wysihtml5-rails', github: 'asithade/bootstrap-wysihtml5-rails'
 gem 'remotipart', '~> 1.2'
-gem 'imgurruby', :git => 'https://github.com/asithade/imgur-ruby'
+gem 'imgurruby', git:'https://github.com/asithade/imgur-ruby'
 gem 'devise'
 gem 'unicorn'
 gem 'newrelic_rpm'
@@ -39,7 +39,6 @@ group :development, :test do
   gem 'rspec-rails', '2.13.1'
   gem 'mailcatcher'
   gem 'thin'
-  gem 'debugger'
 end
 
 group :test do
@@ -48,7 +47,7 @@ group :test do
   gem 'selenium-webdriver', '2.35.1'
   gem 'capybara', '2.1.0'
   gem 'factory_girl_rails', '4.2.1'
-  gem 'cucumber-rails', '1.4.0', :require => false
+  gem 'cucumber-rails', '1.4.0', require: false
   gem 'database_cleaner', github: 'bmabey/database_cleaner'
   gem 'simplecov', '~> 0.7.1'
 end

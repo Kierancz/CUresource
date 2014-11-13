@@ -18,7 +18,7 @@
                 <%= time_ago_in_words(post.created_at.to_time) %> ago</small>
             </span>
 
-            <% if (post.user == current_user || current_user.admin_or_instr?) && @postable %> 
+            <% if current_user && (post.user == current_user || current_user.admin_or_instr?) && @postable %> 
               <span class="pull-left">
                 <% if @postable == "Department" %> 
                   <%= button_to(edit_department_post_path(id: post.id), method: :get, class: 'btn btn-default btn-link btn-xs') do %>

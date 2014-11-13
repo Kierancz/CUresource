@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
 	before_filter :authenticate_user!
 	before_filter :find_postable
-	#before_filter :find_commentable
 	load_and_authorize_resource 
 
 	def new
@@ -13,8 +12,8 @@ class PostsController < ApplicationController
 		@post.user = current_user
 
 		if @post.save
-			flash[:success] = "#{@post.title} was sucessfully created!"
 			redirect_to	request.referer + '#posts'
+			flash[:success] = "#{@post.title} was sucessfully created!"
 		else
 			redirect_to request.referer + '#createpost'
 			flash[:danger] = "#{@post.title} requires a Title and Content."
@@ -37,7 +36,7 @@ class PostsController < ApplicationController
 		@post = Post.find(params[:id])
 		if @post.update_attributes(post_params)
 			redirect_to @postable
-			flash[:success] = "Post was updated!"
+			flash[:success] = "#{@post.title} was updated!"
 		else
 			render action: :edit
 		end

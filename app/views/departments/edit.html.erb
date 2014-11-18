@@ -7,24 +7,7 @@
         <div class="panel-body">
           <h1><b>Editing: </b><%= @department.title %></h1>
             <hr><br>
-     			  <%= simple_form_for(@department) do |f| %>
-              <%= f.label "Subject" %><i> (e.g. CSCI)</i>
-              <%= f.text_field :name, class: "form-control" %>
-          		<%= f.label :title %>
-          		<%= f.text_field :title, class: "form-control" %>
-
-          		<%= f.label :description %><i> (Optional)</i>
-          		<%= f.text_area :description, :rows => 3, class: "form-control" %>
-
-              <%= f.label "Banner Url" %><i> (Optional)</i>
-              <%= f.url_field :banner, class: "form-control" %>
-
-              <%= f.label :info %>
-              <%= f.text_area :info, rows: 5, placeholder: "Enter Department info", class: "wysihtml5" %>
-
-          		<span class="pull-left"><%= f.submit "Save Changes", class: "btn btn-large btn-primary" %></span>
-          		<% end %>
-              
+              <%= render "departments/form" %>
         </div>
       </div>
       <div class="panel panel-default">

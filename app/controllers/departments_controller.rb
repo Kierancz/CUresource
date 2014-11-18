@@ -2,6 +2,7 @@ class DepartmentsController < ApplicationController
 	load_and_authorize_resource
 	#Blocks these methods before a user is authenticated.
 	before_action :authenticate_user!, only: [:create, :destroy, :new, :edit, :update]
+	before_action :find_department
 
 	def new
 		@department = Department.new
@@ -19,12 +20,10 @@ class DepartmentsController < ApplicationController
 
 	def index
 		@departments = Department.all
-		@newdepartment = Department.new
+		@department = Department.new
 	end
 
 	def show
-		id = params[:id]
-		@department = Department.find(id)
 		@postable = @department
 		@posts = @department.posts
 
@@ -33,12 +32,9 @@ class DepartmentsController < ApplicationController
 	end
 
 	def edit
-		id = params[:id]
-		@department = Department.find(id)
 	end
 
 	def update
-		@department = Department.find(params[:id])
 		if @department.update_attributes(department_params)
 			redirect_to @department
 			flash[:success] = "#{@department.title} department was successfully updated!"
@@ -48,7 +44,6 @@ class DepartmentsController < ApplicationController
 	end
 
 	def destroy
-		@department = Department.find(params[:id])
 		if @department.destroy()
 			flash[:success] = "The #{@department.title} department was destroyed!"
 		else
@@ -58,8 +53,12 @@ class DepartmentsController < ApplicationController
 	end
 
 	private
+		def find_department
+			@department = Department.find(params[:id]) unless params[:id].blank?
+		end
+
 		def department_params
-			params.require(:department).permit(:name, :title, :description, :banner, :info)
+			params.require(:department).permit(:subject, :title, :description, :banner, :info, :college)
 		end
 
 end

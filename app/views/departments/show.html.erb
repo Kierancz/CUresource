@@ -8,7 +8,7 @@
           <div id="editlink" class="pull-left">
             <% if current_user && (can? :update, Department) %>
               <%= button_to(edit_department_path, method: :get, class: 'btn btn-default btn-link btn-xs') do %>
-                <span class="glyphicon glyphicon-pencil"></span> Edit <%= @department.name %>
+                <span class="glyphicon glyphicon-pencil"></span> Edit <%= @department.subject %>
               <% end %>
             <% end %>
           </div>
@@ -41,7 +41,7 @@
             <% @department.courses.each do |course| %>
               <%= link_to(course, :class => "list-group-item") do %>
                 <h4 class="list-group-item-heading">
-                  <%= course.title %>
+                  <%= @department.subject %>-<%= course.number %> (<%= course.credits unless course.credits.blank? %>) <%= course.title %>
                 </h4>
               <% end %>
             <% end %>
@@ -69,17 +69,19 @@
               <%= form_for [@department, @department.courses.build] do |f| %>
                 <%= f.label :number %>
                 <%= f.number_field :number, class: "form-control" %>
+                <%= f.label :credits %>
+                <%= f.number_field :credits, class: "form-control" %>
                 <%= f.label :title %>
                 <%= f.text_field :title, class: "form-control" %>
-                <%= f.label :description %><i>(Optional)</i>
+                <%= f.label :description %><i> (Optional)</i>
                 <%= f.text_area :description, :rows => 3, class: "form-control" %>
-                <%= f.label :banner %><i>(Optional)</i>
+                <%= f.label :banner %><i> (Optional)</i>
                 <%= f.url_field :banner, class: "form-control" %>
                 <span class="pull-left">
                   <%= f.submit "Create New Course", class: "btn btn-large btn-primary" %>
                 </span>
               <% end %>
-          </div>
+            </div>
 
           <% end %>
         </div>

@@ -12,13 +12,16 @@
           		<%= f.label :title %>
           		<%= f.text_field :title, class: "form-control" %>
 
-              <%= f.label "Description (Optional)"%>
+              <%= f.label :credits %>
+              <%= f.number_field :credits, class: "form-control" %>
+
+              <%= f.label :description %><i> (Optional)</i>
               <%= f.text_area :description, :rows => 3, class: "form-control" %>
 
-              <%= f.label "Banner Url (Optional)" %>
+              <%= f.label "Banner Url" %><i> (Optional)</i>
               <%= f.url_field :banner, class: "form-control" %>
 
-              <%= f.label :info %>
+              <%= f.label :info %><i> (Optional)</i>
               <%= f.text_area :info, rows: 5, placeholder: "Enter Course Info", class: "wysihtml5" %>
 
           		<span class="pull-left"><%= f.submit "Save Changes", class: "btn btn-large btn-primary" %></span>

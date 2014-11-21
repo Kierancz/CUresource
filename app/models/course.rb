@@ -4,5 +4,6 @@ class Course < ActiveRecord::Base
 	has_many :posts, as: :postable	#allows polymorphic posts
 	has_many :favorites, as: :favoritable
 
-	#scope :recent, lambda { order("courses.updated_at DESC") }
+  scope :num, lambda { order("courses.number ASC") }
+	scope :recent, lambda { order("courses.updated_at DESC") }
 end

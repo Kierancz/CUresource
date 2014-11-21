@@ -3,7 +3,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-xs-12 col-md-8 col-md-offset-2">
-      <div class="panel panel-default">
+      <div class="panel panel-transparent">
         <div class="panel-body">
 
           <h1>Dashboard</h1>
@@ -47,7 +47,7 @@
                 <% if Department.exists?(course.department_id) %>
                   <%= link_to(course, class: "list-group-item") do %>
                     <h4 class="list-group-item-heading">
-                      <%= course.title %>
+                      <%= course.department.subject %>-<%= course.number %> (<%= course.credits unless course.credits.blank? %>) <%= course.title %>
                     </h4>
                   <% end %>
                 <% end %>

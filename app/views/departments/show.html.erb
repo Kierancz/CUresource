@@ -1,7 +1,7 @@
 <% provide(:title, '#{@department.title}') %>
 <div class="row">
   <div class="col-xs-12 col-md-8 col-md-offset-2">
-    <div class="panel panel-default">
+    <div class="panel panel-transparent">
       <div class="panel-body">
 
         <div id="titlesection">
@@ -38,7 +38,7 @@
         <div class="tab-content">
           <div class="tab-pane active fade in" id="courses"><br>
             <center><h3>Courses:</h3></center>
-            <% @department.courses.each do |course| %>
+            <% @department.courses.num.each do |course| %>
               <%= link_to(course, :class => "list-group-item") do %>
                 <h4 class="list-group-item-heading">
                   <%= @department.subject %>-<%= course.number %> (<%= course.credits unless course.credits.blank? %>) <%= course.title %>

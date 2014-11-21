@@ -34,9 +34,11 @@ section {
 
 body { 
   padding-top: 80px; 
-  background-image: url("http://alumni.colorado.edu/wp-content/uploads/2010/10/2010_Aerial213_revisedGA.jpg");
+  background: url("http://alumni.colorado.edu/wp-content/uploads/2010/10/2010_Aerial213_revisedGA.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
-  background-repeat: no-repeat;
 }
 
 textarea {
@@ -44,15 +46,15 @@ textarea {
 }
 
 .panel-transparent {
-    background: none;
+  background: none;
 }
 
 .panel-transparent .panel-heading{
-    background: rgba(122, 130, 136, 0.2)!important;
+  background: rgba(255, 255, 255, 0.85)!important;
 }
 
 .panel-transparent .panel-body{
-    background: rgba(46, 51, 56, 0.2)!important;
+  background: rgba(255, 255, 255, 0.85)!important;
 }
 
 .center {

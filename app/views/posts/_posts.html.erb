@@ -8,7 +8,7 @@
           </a>
         </h4>
       </div>
-      <div id="collapse<%= post.title.gsub(/[^0-9a-z]/i, '') %>" class="accordian-body collapse in">
+      <div id="collapse<%= post.title.gsub(/[^0-9a-z]/i, '') %>" class="accordian-body collapse">
         <div id="postbody" class="accordian-inner">
           <%= post.content.try(:html_safe) %>
         </div>

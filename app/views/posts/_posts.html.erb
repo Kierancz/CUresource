@@ -33,7 +33,7 @@
               </span>
             <% end %>
 
-            <% if current_user %>
+            <% if current_user && @postable %>
               <span class="pull-left">
                 <% if @postable == "Department"%>
                   <%= button_to(department_post_path(id: post.id, department_id: @postable.id), method: :get, class: 'btn btn-default btn-link btn-xs') do %>
@@ -49,6 +49,8 @@
                   <% end %>                 
                 <% end %>
               </span>
+              
+            <% elsif current_user %>
 
             <span class="pull-left">
               <% unless current_user.favorite_posts.exists?(id: post.id) %>

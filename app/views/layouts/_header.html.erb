@@ -16,8 +16,8 @@
             </li>
 
           <% if current_user.role == "admin" %>
-            <li><%= link_to "Users", users_path do %>
-              <span class="glyphicon glyphicon-list-alt"></span>
+            <li><%= link_to users_path do %>
+              <span class="glyphicon glyphicon-list-alt"></span> Users
               <% end %>
             </li>
           <% end %>

@@ -1,15 +1,99 @@
-<div class="row">
-	<div class="col-xs-12 col-md-6 col-md-offset-3">
-		<div class="panel panel-default">
+<%= render "posts/wysihtml5" %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+      <div class="panel panel-transparent">
+        <div class="panel-body">
 
-			<div class="panel-body">
-				<%= post.content.try(:html_safe) %>
-			</div>
+	<div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= @post.title.gsub(/[^0-9a-z]/i, '') %>">
+            <%= @post.title %> - <small><%= @post.description.capitalize %></small>
+          </a>
+        </h4>
+      </div>
+      <div id="collapse<%= @post.title.gsub(/[^0-9a-z]/i, '') %>" class="accordian-body collapse in">
+        <div id="postbody" class="accordian-inner">
+          <%= @post.content.try(:html_safe) %>
+        </div>
 
-			<div class="panel-footer">
-				<span class="buttontext">Edit</span>
-			</div>
+        <div class="panel-footer">
+          <span class="pull-right">
+            <small><%= @post.user.name unless @post.user.name.blank? %>  
+              <span class="glyphicon glyphicon-time"></span> <%= time_ago_in_words(@post.created_at.to_time) %></small>
+          </span>
 
-		</div>
+          <% if current_user && (@post.user == current_user || current_user.admin_or_instr?) && @postable %> 
+            <span class="pull-left">
+              <% if @postable == "Department" %> 
+                <%= button_to(edit_department_post_path(id: @post.id), method: :get, class: 'btn btn-default btn-link btn-xs') do %>
+                <span class="glyphicon glyphicon-pencil"><span class="buttontext">Edit</span></span>
+                <% end %>
+
+              <% else %>
+                <%= button_to(edit_course_post_path(@postable.id, id: @post.id), method: :get, class: 'btn btn-default btn-link btn-xs') do %>
+                <span class="glyphicon glyphicon-pencil"><span class="buttontext">Edit</span></span>
+                <% end %>
+              <% end %>
+            </span>
+          <% end %>
+
+          <% if current_user %>
+	          <span class="pull-left">
+	            <%= button_to(department_post_path(id: @post.id, department_id: @postable.id), method: :get, class: 'btn btn-default btn-link btn-xs') do %>
+	              <span class="glyphicon glyphicon-comment"></span> Comments
+	            <% end %>
+	          </span>
+
+	          <span class="pull-left">
+	            <% unless current_user.favorite_posts.exists?(id: @post.id) %>
+	              <%= button_to(favorites_path(post_id: @post), method: :post, class: 'btn btn-default btn-link btn-xs') do %>
+	                <span class="glyphicon glyphicon-heart-empty"></span> Favorite
+	              <% end %>
+	            <% else %>
+	              <%= button_to(favorite_path(post_id: @post), method: :delete, class: 'btn btn-default btn-link btn-xs') do %>
+	                <span class="glyphicon glyphicon-heart"></span> Unfavorite
+	              <% end %>
+	            <% end %>
+	          </span>
+
+          <% end %>
+
+          	<br><br>
+          	<% @comments.each do |com| %>
+	          	<div class="panel panel-default">
+	          		<div class="panel-body">
+	          			<%= com.comment %>
+	          			<span class="pull-right"><small><span class="glyphicon glyphicon-time"></span> <%= time_ago_in_words(com.updated_at.to_time) %></small></span>
+	          		</div>
+							</div>
+            <% end %>
+       
+       		<br><h4>Add a Comment</h4>
+       		<% if @postable == "Department" %>
+	          <%= form_for @comment, url: department_post_comments_path(@postable.id, @post) do |f| %>
+	            <%= f.text_area :comment, rows: 5, class: "wysihtml5" %>
+	          	<span class="pull-left"><%= f.submit "Save Comment", class: "btn btn-large btn-primary" %></span>
+	          <% end %>
+	        <% else %>
+	          <%= form_for @comment, url: course_post_comments_path(@postable.id, @post) do |f| %>
+	            <%= f.text_area :comment, rows: 5, class: "wysihtml5" %>
+	          	<span class="pull-left"><%= f.submit "Save Comment", class: "btn btn-large btn-primary" %></span>
+	          <% end %>
+	        <% end %>
+	          <br><br>
+
+        </div>
+
+      </div>
+    </div>
 	</div>
+
+	  		</div>
+			</div>
+    </div>
+  </div>
 </div>
+

@@ -10,7 +10,7 @@
               <%= render "departments/form" %>
         </div>
       </div>
-      <div class="panel panel-default">
+      <div class="panel panel-transparent">
         <div class="panel-body">
           <h3>Delete the <%= @department.title %> department:</h3>
       		<span class="pull-left"><%= button_to('Delete Department', { action: "destroy", id: @department.id },

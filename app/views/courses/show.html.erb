@@ -32,7 +32,7 @@
             <% end %>
           </div>
 
-          <div class="smalltext" style="position: absolute; top: 8px; right: 26px; width: 200px; text-align:right"><p><b>Updated: </b><%= time_ago_in_words(@course.updated_at.to_time) unless @course.updated_at.blank? %> ago </p>
+          <div class="smalltext" style="position: absolute; top: 8px; right: 26px; width: 200px; text-align:right"><p><span class="glyphicon glyphicon-time"></span> <%= time_ago_in_words(@course.updated_at.to_time) unless @course.updated_at.blank? %></p>
           </div>
 
           <h1><b><%= @course.title %></b><br>

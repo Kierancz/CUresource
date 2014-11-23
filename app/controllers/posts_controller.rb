@@ -22,6 +22,8 @@ class PostsController < ApplicationController
 
 	def show
 		@post = Post.find(params[:id])
+		@comment = @post.comments.build
+		@comments = @post.comments.recent
 	end
 
 	def index
@@ -69,10 +71,6 @@ class PostsController < ApplicationController
 				end
 			end
 			nil
-		end
-
-		def find_commentable
-			@commentable = params[:commentable_type].classify.constantize.find(params[:commentable_id])
 		end
 
 		def path_to_url(path)

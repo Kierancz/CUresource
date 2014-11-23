@@ -7,13 +7,18 @@ Curesource::Application.routes.draw do
   resources :users, only: [:show, :index]
   resources :departments do
     resources :courses
-    resources :posts
+    resources :posts do
+      resources :comments, only: [:index, :new, :create]
+    end
   end
   resources :courses do
-    resources :posts
+    resources :posts do
+      resources :comments, only: [:index, :new, :create]
+    end
   end
+  resources :comments, only: [:show, :edit, :update, :destroy]
   resources :favorites, only: [:create, :destroy]
-  resources :comments, path_prefix: '/:commentable_type/:commentable_id'
+
 
   root 'pages#home'
   match '/help',                        to: 'pages#help',               via: 'get'

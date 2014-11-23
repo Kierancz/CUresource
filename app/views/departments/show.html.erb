@@ -39,7 +39,7 @@
           <div class="tab-pane active fade in" id="courses"><br>
             <center><h3>Courses:</h3></center>
             <% @department.courses.num.each do |course| %>
-              <%= link_to(course, :class => "list-group-item") do %>
+              <%= link_to(course, class: "list-group-item") do %>
                 <h4 class="list-group-item-heading">
                   <%= @department.subject %>-<%= course.number %> (<%= course.credits unless course.credits.blank? %>) <%= course.title %>
                 </h4>

@@ -14,6 +14,7 @@ class Ability
       can :manage, :all
     else #student role 
       can :manage, Post
+      can :manage, Comment
       can :manage, User
       can :read, :all
       can :index, Department

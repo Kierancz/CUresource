@@ -18,39 +18,27 @@
                 <span class="glyphicon glyphicon-time"></span> <%= time_ago_in_words(post.created_at.to_time) %></small>
             </span>
 
-            <% if current_user && (post.user == current_user || current_user.admin_or_instr?) && @postable %> 
+            <% if current_user && (post.user == current_user || current_user.admin_or_instr?) %> 
               <span class="pull-left">
-                <% if @postable == "Department" %> 
-                  <%= button_to(edit_department_post_path(id: post.id), method: :get, class: 'btn btn-default btn-link btn-xs') do %>
-                  <span class="glyphicon glyphicon-pencil"><span class="buttontext">Edit</span></span>
-                  <% end %>
-
-                <% else %>
-                  <%= button_to(edit_course_post_path(@postable.id, id: post.id), method: :get, class: 'btn btn-default btn-link btn-xs') do %>
-                  <span class="glyphicon glyphicon-pencil"><span class="buttontext">Edit</span></span>
-                  <% end %>
+                <%= button_to(edit_polymorphic_path(post), method: :get, class: 'btn btn-default btn-link btn-xs') do %>
+                  <span class="glyphicon glyphicon-pencil"></span> Edit
                 <% end %>
               </span>
             <% end %>
 
-            <% if current_user && @postable %>
+            <% if current_user %>
               <span class="pull-left">
-                <% if @postable == "Department"%>
-                  <%= button_to(department_post_path(id: post.id, department_id: @postable.id), method: :get, class: 'btn btn-default btn-link btn-xs') do %>
+                <%= button_to(polymorphic_path(post), method: :get, class: 'btn btn-default btn-link btn-xs') do %>
                   <span class="glyphicon glyphicon-comment"></span> Comments
-                    <% if post.comments.count != 0 %> (<%= post.comments.count%>)
-                    <% end %> 
-                  <% end %>
-                <% else %>
-                  <%= button_to(course_post_path(id: post.id, course_id: @postable.id), method: :get, class: 'btn btn-default btn-link btn-xs') do %>
-                  <span class="glyphicon glyphicon-comment"></span> Comments
-                    <% if post.comments.count != 0 %> (<%= post.comments.count%>)
-                    <% end %> 
-                  <% end %>                 
-                <% end %>
+
+                  <% if post.comments.count != 0 %> (<%= post.comments.count%>)
+                  <% end %> 
+
+                <% end %>                 
               </span>
+            <% end %>
               
-            <% elsif current_user %>
+            <% if current_user %>
 
             <span class="pull-left">
               <% unless current_user.favorite_posts.exists?(id: post.id) %>

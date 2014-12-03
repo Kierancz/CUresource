@@ -1,3 +1,4 @@
+<%= render "posts/wysihtml5" %>
 <%= simple_form_for(@department) do |f| %>
 	<%= f.label :subject %><i> (e.g. CSCI)</i>
 	<%= f.text_field :subject, class: "form-control" %>
@@ -7,9 +8,6 @@
 
 	<%= f.label :description %><i> (Optional)</i>
 	<%= f.text_area :description, :rows => 3, class: "form-control" %>
-
-	<%= f.label "Banner Url" %><i> (Optional)</i>
-	<%= f.url_field :banner, class: "form-control" %>
 
 	<%= f.label :info %>
 	<%= f.text_area :info, rows: 5, placeholder: "Enter Department info", class: "wysihtml5" %>

@@ -1,7 +1,7 @@
 <% provide(:title, '#{@course.title}') %>
 
 <div class="row">
-  <div class="col-xs-12 col-md-8 col-md-offset-2">
+  <div class="col-xs-8 col-md-8 col-md-offset-2">
     <div class="panel panel-transparent">
       <div class="panel-body">
 
@@ -9,7 +9,7 @@
           <% if current_user && current_user.admin_or_instr? %>
             <div id="editlink" class="pull-left">
               <%= button_to([:edit, @course], method: "get", class: 'btn btn-default btn-link btn-xs') do %>
-                <span class="glyphicon glyphicon-pencil"></span> Edit <%= @course.title %>
+                <span class="glyphicon glyphicon-edit"></span> Edit <%= @course.title %>
               <% end %>
             </div><br>
           <% end %>
@@ -46,7 +46,7 @@
           <li class="active"><a href="#posts" data-target="#posts" data-toggle="tab"><span class="badge"><%= @course.posts.count %></span> Posts</a>
           </li>
           <% if current_user %>
-          <li><a href="#createpost" data-target="#createpost" data-toggle="tab"><span class="glyphicon glyphicon-pencil"></span> Create Post</a>
+          <li><a href="#createpost" data-target="#createpost" data-toggle="tab"><span class="glyphicon glyphicon-plus"></span> Create Post</a>
           <% end %>
           </li>
         </ul>

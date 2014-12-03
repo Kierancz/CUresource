@@ -19,12 +19,28 @@ class CommentsController < ApplicationController
 		end
 	end
 
+	def delete
+		@comment = Comment.find(params[:id])
+		if @comment.destroy()
+			redirect_to request.referer
+			flash[:success] = "Comment was sucessfully destroyed!"
+		else
+			redirect_to request.referer
+			flash[:danger] = "Comment failed to be destroyed. Please try again later..."
+		end
+	end
+
+
 	private
 		def comment_params
 			params.require(:comment).permit(:comment, :user_id, :commentable_id, :commentable_type)
 		end
 
 		def find_commentable	#gets the type of comment to create
+			if @post
+				@commentable = @post
+			end
+
 			params.each do |name, value|
 				if name =~ /(.+)_id$/
 					@commentable = $1.classify.constantize.find(value)

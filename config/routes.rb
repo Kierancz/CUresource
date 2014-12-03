@@ -7,16 +7,17 @@ Curesource::Application.routes.draw do
   resources :users, only: [:show, :index]
   resources :departments do
     resources :courses
-    resources :posts do
-      resources :comments, only: [:index, :new, :create]
-    end
+    resources :posts
   end
+
   resources :courses do
-    resources :posts do
-      resources :comments, only: [:index, :new, :create]
-    end
+    resources :posts 
   end
-  resources :comments, only: [:show, :edit, :update, :destroy]
+
+  resources :posts do
+    resources :comments
+  end
+
   resources :favorites, only: [:create, :destroy]
 
 
@@ -24,6 +25,9 @@ Curesource::Application.routes.draw do
   match '/help',                        to: 'pages#help',               via: 'get'
   match '/about',                       to: 'pages#about',              via: 'get'
   match '/contact',                     to: 'pages#contact',            via: 'get'
+  match '/link',                        to: 'pages#link',               via: 'get'
+  match '/post/:post_id/comments/:id',  to: 'comments#delete',          via: 'delete'
+
 
   #match '/departments/:department_id',  to: 'posts#show',               via: 'post'
   # The priority is based upon order of creation: first created -> highest priority.

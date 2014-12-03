@@ -10,6 +10,7 @@ class DepartmentsController < ApplicationController
 
 	def create
 		@department = Department.create(department_params)
+
 		if @department.save
 			redirect_to @department
 			flash[:success] = "The #{@department.title} department was created!"
@@ -21,6 +22,8 @@ class DepartmentsController < ApplicationController
 	def index
 		@departments = Department.all
 		@department = Department.new
+
+		@courses = Course.all
 	end
 
 	def show
@@ -58,7 +61,7 @@ class DepartmentsController < ApplicationController
 		end
 
 		def department_params
-			params.require(:department).permit(:subject, :title, :description, :banner, :info, :college)
+			params.require(:department).permit(:subject, :title, :description, :banner, :info, :college, :type)
 		end
 
 end

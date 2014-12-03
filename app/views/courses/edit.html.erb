@@ -1,38 +1,40 @@
-<% if current_user.admin_or_instr? %>
 <%= render "posts/wysihtml5" %>
+<% if current_user.admin_or_instr? %>
 <div class="container-fluid">
   <div class="row">
-    <div class="col-xs-12 col-md-8 col-md-offset-2">
+    <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-transparent">
         <div class="panel-body">
-            <h1><b>Editing: </b><%= @course.title %></h1>
+          <h1><b>Editing: </b><%= @course.title %></h1>
           <hr><br>
+
      			<%= simple_form_for(@course) do |f| %>
+            <%= f.label :number %>
+            <%= f.number_field :number, class: "form-control" %>
 
-          		<%= f.label :title %>
-          		<%= f.text_field :title, class: "form-control" %>
+            <%= f.label :credits %>
+            <%= f.number_field :credits, class: "form-control" %>
 
-              <%= f.label :credits %>
-              <%= f.number_field :credits, class: "form-control" %>
+            <%= f.label :title %>
+            <%= f.text_field :title, class: "form-control" %>
 
-              <%= f.label :description %><i> (Optional)</i>
-              <%= f.text_area :description, :rows => 3, class: "form-control" %>
+            <%= f.label :description %><i> (Optional)</i>
+            <%= f.text_area :description, :rows => 3, class: "form-control" %>
 
-              <%= f.label "Banner Url" %><i> (Optional)</i>
-              <%= f.url_field :banner, class: "form-control" %>
+            <%= f.label :info %>
+            <%= f.text_area :info, rows: 5, placeholder: "Enter Course info", class: "wysihtml5" %>
 
-              <%= f.label :info %><i> (Optional)</i>
-              <%= f.text_area :info, rows: 5, placeholder: "Enter Course Info", class: "wysihtml5" %>
-
-          		<span class="pull-left"><%= f.submit "Save Changes", class: "btn btn-large btn-primary" %></span>
-          		<% end %>
+            <span class="pull-left">
+              <%= f.submit "Save Course", class: "btn btn-large btn-primary" %>
+            </span>
+          <% end %>
               
         </div>
       </div>
-      <div class="panel panel-default">
+      <div class="panel panel-transparent">
         <div class="panel-body">
           <h3>Delete the <%= @course.title %> course:</h3>
-      		<span class="pull-left"><%= button_to('Delete Course', { :action => "destroy", :id => @course.id },
+      		<span class="pull-left"><%= button_to('Delete Course', { action: "destroy", id: @course.id },
           method: "delete", data: { confirm: 'Are you sure?', disable_with: 'loading...' }, class: "btn btn-large btn-danger") %></span>
         </div>
       </div>

@@ -1,6 +1,6 @@
 <% provide(:title, '#{@department.title}') %>
 <div class="row">
-  <div class="col-xs-12 col-md-8 col-md-offset-2">
+  <div class="col-md-8 col-md-offset-2">
     <div class="panel panel-transparent">
       <div class="panel-body">
 
@@ -8,7 +8,7 @@
           <div id="editlink" class="pull-left">
             <% if current_user && (can? :update, Department) %>
               <%= button_to(edit_department_path, method: :get, class: 'btn btn-default btn-link btn-xs') do %>
-                <span class="glyphicon glyphicon-pencil"></span> Edit <%= @department.subject %>
+                <span class="glyphicon glyphicon-edit"></span> Edit <%= @department.subject %>
               <% end %>
             <% end %>
           </div>
@@ -30,7 +30,7 @@
           <li><a href="#posts" data-target="#posts" data-toggle="tab"><span class="badge"><%= @department.posts.count %></span> Posts</a>
           </li>
           <% if current_user && (can? :create, Post) %>
-          <li><a href="#createpost" data-target="#createpost" data-toggle="tab"><span class="glyphicon glyphicon-pencil"></span> Create Post</a>
+          <li><a href="#createpost" data-target="#createpost" data-toggle="tab"><span class="glyphicon glyphicon-plus"></span> New Post</a>
           <% end %>
           </li>
         </ul>
@@ -38,13 +38,15 @@
         <div class="tab-content">
           <div class="tab-pane active fade in" id="courses"><br>
             <center><h3>Courses:</h3></center>
-            <% @department.courses.num.each do |course| %>
-              <%= link_to(course, class: "list-group-item") do %>
-                <h4 class="list-group-item-heading">
-                  <%= @department.subject %>-<%= course.number %> (<%= course.credits unless course.credits.blank? %>) <%= course.title %>
-                </h4>
+            <div class="list-group">
+              <% @department.courses.num.each do |course| %>
+                <%= link_to(course, class: "list-group-item") do %>
+                  <h4 class="list-group-item-heading">
+                    <%= @department.subject %>-<%= course.number %> (<%= course.credits unless course.credits.blank? %>) <%= course.title %>
+                  </h4>
+                <% end %>
               <% end %>
-            <% end %>
+            </div>
           </div>
 
           <div class="tab-pane" id="info"><br>
@@ -75,8 +77,6 @@
                 <%= f.text_field :title, class: "form-control" %>
                 <%= f.label :description %><i> (Optional)</i>
                 <%= f.text_area :description, :rows => 3, class: "form-control" %>
-                <%= f.label :banner %><i> (Optional)</i>
-                <%= f.url_field :banner, class: "form-control" %>
                 <span class="pull-left">
                   <%= f.submit "Create New Course", class: "btn btn-large btn-primary" %>
                 </span>

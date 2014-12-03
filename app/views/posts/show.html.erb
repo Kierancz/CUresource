@@ -25,25 +25,20 @@
               <span class="glyphicon glyphicon-time"></span> <%= time_ago_in_words(@post.created_at.to_time) %></small>
           </span>
 
-          <% if current_user && (@post.user == current_user || current_user.admin_or_instr?) && @postable %> 
+          <% if current_user && (@post.user == current_user || current_user.admin_or_instr?) %> 
             <span class="pull-left">
-              <% if @postable == "Department" %> 
-                <%= button_to(edit_department_post_path(id: @post.id), method: :get, class: 'btn btn-default btn-link btn-xs') do %>
-                <span class="glyphicon glyphicon-pencil"><span class="buttontext">Edit</span></span>
-                <% end %>
-
-              <% else %>
-                <%= button_to(edit_course_post_path(@postable.id, id: @post.id), method: :get, class: 'btn btn-default btn-link btn-xs') do %>
-                <span class="glyphicon glyphicon-pencil"><span class="buttontext">Edit</span></span>
-                <% end %>
+              <%= button_to(edit_polymorphic_path(@post), method: :get, class: 'btn btn-default btn-link btn-xs') do %>
+                <span class="glyphicon glyphicon-pencil"></span> Edit
               <% end %>
             </span>
           <% end %>
 
           <% if current_user %>
 	          <span class="pull-left">
-	            <%= button_to(department_post_path(id: @post.id, department_id: @postable.id), method: :get, class: 'btn btn-default btn-link btn-xs') do %>
+	            <%= button_to(polymorphic_path(@post), method: :get, class: 'btn btn-default btn-link btn-xs') do %>
 	              <span class="glyphicon glyphicon-comment"></span> Comments
+                <% if @post.comments.count != 0 %> (<%= @post.comments.count%>)
+                <% end %> 
 	            <% end %>
 	          </span>
 
@@ -62,23 +57,32 @@
           <% end %>
 
           	<br><br>
+            <% if @comments.count == 0 %>
+              <h4> No comments yet, but you could change that! </h4>
+            <% end %>
           	<% @comments.each do |com| %>
 	          	<div class="panel panel-default">
 	          		<div class="panel-body">
 	          			<%= com.comment %>
-	          			<span class="pull-right"><small><span class="glyphicon glyphicon-time"></span> <%= time_ago_in_words(com.updated_at.to_time) %></small></span>
+                  <% if com.user == current_user %>
+                    <span class="pull-right">
+                      <%= button_to({controller: :comments, action: :delete, id: com, post_id: @post}, method: :delete, data: { confirm: 'Sure you want to delete this commet?', disable_with: 'loading...' }, class: "btn btn-default btn-link btn-xs") do %>
+                      <span class="pull-right glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="bottom" title="Delete this comment"></span>
+                      <% end %>
+                    </span>
+                  <% end %>
+	          			  <span class="pull-right"><small>
+                      <%= com.user.name unless com.user.name.blank? %> 
+                      <span class="glyphicon glyphicon-time"></span> <%= time_ago_in_words(com.updated_at.to_time) %>
+                    </small>
+                    </span>
 	          		</div>
 							</div>
             <% end %>
        
        		<br><h4>Add a Comment</h4>
-       		<% if @postable == "Department" %>
-	          <%= form_for @comment, url: department_post_comments_path(@postable.id, @post) do |f| %>
-	            <%= f.text_area :comment, rows: 5, class: "wysihtml5" %>
-	          	<span class="pull-left"><%= f.submit "Save Comment", class: "btn btn-large btn-primary" %></span>
-	          <% end %>
-	        <% else %>
-	          <%= form_for @comment, url: course_post_comments_path(@postable.id, @post) do |f| %>
+       		<% if @post %>
+	          <%= form_for [@post, Comment.new] do |f| %>
 	            <%= f.text_area :comment, rows: 5, class: "wysihtml5" %>
 	          	<span class="pull-left"><%= f.submit "Save Comment", class: "btn btn-large btn-primary" %></span>
 	          <% end %>
@@ -86,7 +90,6 @@
 	          <br><br>
 
         </div>
-
       </div>
     </div>
 	</div>

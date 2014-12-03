@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141118210130) do
+ActiveRecord::Schema.define(version: 20141123060607) do
 
   create_table "comments", force: true do |t|
     t.string   "title",            limit: 50, default: ""
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20141118210130) do
     t.string   "college"
     t.string   "campus"
     t.string   "acro"
+    t.string   "type"
   end
 
   create_table "departments_users", force: true do |t|
@@ -95,6 +96,7 @@ ActiveRecord::Schema.define(version: 20141118210130) do
     t.integer  "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "type"
   end
 
   create_table "users", force: true do |t|
@@ -117,6 +119,7 @@ ActiveRecord::Schema.define(version: 20141118210130) do
     t.datetime "deleted_at"
     t.string   "name"
     t.string   "role"
+    t.string   "bio"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

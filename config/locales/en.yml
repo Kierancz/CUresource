@@ -20,4 +20,14 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  datetime:
+    distance_in_words:
+      x_minutes:
+        one: "1 m"
+        other: "%{count} m"
+      x_hours:
+        one: "1 h"
+        other: "%{count} h"
+      x_days:
+        one: "1 d"
+        other: "%{count} d"

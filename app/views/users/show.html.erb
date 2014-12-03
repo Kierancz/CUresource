@@ -7,23 +7,21 @@
         <div class="panel-body">
 
           <h1>Dashboard</h1>
-          <div class="row">
-            <div class="col-md-6">
-              <center><h3 style="margin: 4px"><b><%= @user.name unless @user.name.blank? %></b></h3></center>
-              <h2 style="margin: 4px"><b><%= @user.email %></b></h2>
-            </div>
-          </div>
           <hr>
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-5">
+              <center><h3><b><%= @user.name unless @user.name.blank? %></b></h3></center>
+              <h2 style="margin: 4px"><b><%= @user.email %></b></h2>
+            </div>
+            <div class="col-md-2">
               <center><h3><%= @user.posts.count %><br>
               <b><small>Posts</small></b></h3></center>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-2">
               <center><h3><%= time_ago_in_words(@user.created_at.to_time) %><br>
               <b><small>Age</small></b></h3></center>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-2">
               <center><h3>
                 <% if @user.role == "admin" %>Admin<br>
                 <% elsif @user.role == "instructor" %>Instructor<br> 
@@ -43,15 +41,17 @@
 
           <div class="tab-content">
             <div class="tab-pane active fade in" id="course"><br>
-              <% @courses.each do |course| %>
-                <% if Department.exists?(course.department_id) %>
-                  <%= link_to(course, class: "list-group-item") do %>
-                    <h4 class="list-group-item-heading">
-                      <%= course.department.subject %>-<%= course.number %> (<%= course.credits unless course.credits.blank? %>) <%= course.title %>
-                    </h4>
+              <div class="list-group">
+                <% @courses.each do |course| %>
+                  <% if Department.exists?(course.department_id) %>
+                    <%= link_to(course, class: "list-group-item") do %>
+                      <h4 class="list-group-item-heading">
+                        <%= course.department.subject %>-<%= course.number %> (<%= course.credits unless course.credits.blank? %>) <%= course.title %>
+                      </h4>
+                    <% end %>
                   <% end %>
                 <% end %>
-              <% end %>
+              </div>
             </div>
 
             <div class="tab-pane" id="post"><br>

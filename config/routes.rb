@@ -27,6 +27,7 @@ Curesource::Application.routes.draw do
   match '/contact',                     to: 'pages#contact',            via: 'get'
   match '/link',                        to: 'pages#link',               via: 'get'
   match '/post/:post_id/comments/:id',  to: 'comments#delete',          via: 'delete'
+  match '/departments#departments',     to: 'departments#index',        via: 'get'
 
 
   #match '/departments/:department_id',  to: 'posts#show',               via: 'post'

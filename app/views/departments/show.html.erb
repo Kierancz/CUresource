@@ -1,6 +1,6 @@
 <% provide(:title, '#{@department.title}') %>
 <div class="row">
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-xs-12 col-md-8 col-md-offset-2">
     <div class="panel panel-transparent">
       <div class="panel-body">
 
@@ -76,7 +76,7 @@
                 <%= f.label :title %>
                 <%= f.text_field :title, class: "form-control" %>
                 <%= f.label :description %><i> (Optional)</i>
-                <%= f.text_area :description, :rows => 3, class: "form-control" %>
+                <%= f.text_area :description, rows: 3, class: "form-control" %>
                 <span class="pull-left">
                   <%= f.submit "Create New Course", class: "btn btn-large btn-primary" %>
                 </span>

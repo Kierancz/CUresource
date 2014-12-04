@@ -46,7 +46,7 @@
                   <span class="glyphicon glyphicon-heart-empty"></span> Favorite
                 <% end %>
               <% else %>
-                <%= button_to(favorite_path(post_id: post), method: :delete, class: 'btn btn-default btn-link btn-xs') do %>
+                <%= button_to(favorite_path(post_id: post, id: post.id), method: :delete, class: 'btn btn-default btn-link btn-xs') do %>
                   <span class="glyphicon glyphicon-heart"></span> Unfavorite
                 <% end %>
               <% end %>

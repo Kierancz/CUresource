@@ -24,6 +24,10 @@ class ApplicationController < ActionController::Base
     params[resource] &&= send(method) if respond_to?(method, true)
   end
 
+  def path_to_url(path)
+    "#{request.protocol}#{request.host_with_port.gsub(/:80$/,"")}/#{path.sub(/^\//,"")}"
+  end
+
   protected
 
     def configure_permitted_parameters

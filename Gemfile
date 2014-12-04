@@ -33,6 +33,8 @@ gem 'turbolinks'
 gem 'dalli'
 gem 'acts_as_commentable'
 gem 'jquery-validation-rails'
+gem 'ransack'
+gem 'jquery-cookie-rails'
 
 group :development, :test do
   gem 'sqlite3'

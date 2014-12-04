@@ -23,11 +23,11 @@ en:
   datetime:
     distance_in_words:
       x_minutes:
-        one: "1 m"
-        other: "%{count} m"
+        one: "1 min"
+        other: "%{count} min"
       x_hours:
-        one: "1 h"
-        other: "%{count} h"
+        one: "1 hr"
+        other: "%{count} hrs"
       x_days:
-        one: "1 d"
-        other: "%{count} d"
+        one: "1 day"
+        other: "%{count} days"

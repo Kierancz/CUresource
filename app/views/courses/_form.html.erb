@@ -1,0 +1,17 @@
+<%= render "posts/wysihtml5" %>
+
+<%= f.label :number %>
+<%= f.number_field :number, class: "form-control" %>
+
+<%= f.label :credits %>
+<%= f.number_field :credits, class: "form-control" %>
+
+<%= f.label :title %>
+<%= f.text_field :title, class: "form-control" %>
+
+<%= f.label :description %><i> (Optional)</i>
+<%= f.text_area :description, :rows => 3, class: "form-control" %>
+
+<span class="pull-left">
+  <%= f.submit "New Course", class: "btn btn-large btn-primary" %>
+</span>

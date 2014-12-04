@@ -20,10 +20,18 @@ class DepartmentsController < ApplicationController
 	end
 
 	def index
-		@departments = Department.all
 		@department = Department.new
 
-		@courses = Course.all
+		q = params[:q]
+		@departments = Department.search(title_cont: q).result
+		@courses = Course.search(title_cont: q).result
+		@posts = Post.search(title_cont: q).result
+
+		#@sortdepartments = Department.sortsearch(params[:search]).order(sort_column + " " + sort_direction).paginate(per_page: 5, page: params[:page])
+			@alldepartments = Department.alph
+			#redirect_to request.referrer + "#departments"
+
+		@allcourses = Course.recent.limit(10)
 	end
 
 	def show

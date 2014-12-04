@@ -1,13 +1,16 @@
+<%= render "departments/tabscript" %>
 <% provide(:title, 'All Departments') %>
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
       <div class="panel panel-transparent">
         <div class="panel-body">
-        <h1>Resource Categories</h1>
+        <h1>CU-Boulder Resources</h1>
 
         <ul class="nav nav-tabs">
-          <li class="active"> <a href="#departments" data-target="#departments" data-toggle="tab">Departments</a>
+          <li class="active"> <a href="#search" data-target="#search" data-toggle="tab"><span class="glyphicon glyphicon-search"></span> Search</a>
+          </li>
+          <li> <a href="#departments" data-target="#departments" data-toggle="tab">Departments</a>
           </li>
           <li><a href="#courses" data-target="#courses" data-toggle="tab">Courses</a>
           </li>
@@ -18,23 +21,61 @@
         </ul>
 
         <div class="tab-content">
-          <div class="tab-pane active fade in" id="departments">
-            <center><h3>CU-Boulder Departments:</h3><br></center>
-            <div class="list-group">
-            <% @departments.alph.each do |department| %>
-              <%= link_to(department, class: "list-group-item") do %>
-                <h4 class="list-group-item-heading">
-                  <%= department.subject %> - <%= department.title %><span class="badge pull-right"><%= department.courses.count %> Courses</span>
-                </h4>
+          <div class="tab-pane active fade in" id="search">
+            <center><h3>Search Departments, Courses, and Posts</h3><br></center>
+            <div class="col-md-8 col-md-offset-2">
+              <%= form_tag @search, method: :get, class: "input-group" do %>
+                <%= text_field_tag :q, nil, class: "form-control", placeholder: "Search" %>
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="button">Go!</button>
+                </span>
               <% end %>
+            </div>
+
+            <% if params[:q] != nil %>
+              <div class="list-group">
+                <br><br><center><h3>Search Results:</h3></center>
+                <% @departments.alph.each do |department| %>
+                  <%= link_to(department, class: "list-group-item") do %>
+                    <h4 class="list-group-item-heading">
+                      <%= department.subject %> - <%= department.title %><span class="badge pull-right"><%= department.courses.count %> Courses</span>
+                    </h4>
+                  <% end %>
+                <% end %>
+              </div>
+
+              <div class="list-group">
+                <% @courses.each do |course| %>
+                  <%= link_to(course, class: "list-group-item") do %>
+                    <h4 class="list-group-item-heading">
+                      <%= course.subject %><%= course.title %>
+                    </h4>
+                  <% end %>
+                <% end %>
+              </div>
             <% end %>
+
+            <%= render "posts/posts" %>
+
+          </div>
+
+          <div class="tab-pane fade in" id="departments">
+            <div class="list-group">
+              <center><h3>CU-Boulder Departments:</h3><br></center>
+              <% @alldepartments.each do |department| %>
+                <%= link_to(department, class: "list-group-item") do %>
+                  <h4 class="list-group-item-heading">
+                    <%= department.subject %> - <%= department.title %><span class="badge pull-right"><%= department.courses.count %> Courses</span>
+                  </h4>
+                <% end %>
+              <% end %>
             </div>
           </div>
 
           <div class="tab-pane fade in" id="courses">
-            <center><h3>CU-Boulder Courses:</h3><br></center>
+            <center><h3>Recently Updated Courses:</h3><br></center>
               <div class="list-group">
-              <% @courses.each do |course| %>
+              <% @allcourses.each do |course| %>
                 <%= link_to(course, class: "list-group-item") do %>
                   <h4 class="list-group-item-heading">
                     <%= course.subject %><%= course.title %>

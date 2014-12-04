@@ -9,7 +9,7 @@ class Post < ActiveRecord::Base
 	validates :content, presence: true
 	acts_as_commentable
 
-	#scope :recent, lambda { order("posts.updated_at DESC") }
+	scope :recent, lambda { order("posts.updated_at DESC") }
 	#scope :fav, 
 	#	lambda { 
 	#	select("posts.*, count(favorites.id) AS favorite_post_count").

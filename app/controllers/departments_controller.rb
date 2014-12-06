@@ -43,7 +43,6 @@ class DepartmentsController < ApplicationController
 	end
 
 	def edit
-		redirect_to @department
 	end
 
 	def update
@@ -67,7 +66,7 @@ class DepartmentsController < ApplicationController
 	def pin
 		@department = Department.find(params[:department_id])
 		@department.pin = true
-		@department.save
+		@department.save!
 		redirect_to @department
 		flash[:success] = "#{@department.title} was pinned! "
 	end
@@ -75,7 +74,7 @@ class DepartmentsController < ApplicationController
 	def deletepin
 		@department = Department.find(params[:department_id])
 		@department.pin = false
-		@department.save
+		@department.save!
 		redirect_to @department
 	end
 

@@ -10,6 +10,7 @@ class Ability
 
     if user.role == "admin"
       can :manage, :all
+      can :pin, :deletepin, Department
     elsif user.role == "instructor"
       can :manage, :all
     else #student role 

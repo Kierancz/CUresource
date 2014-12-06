@@ -61,8 +61,19 @@
 
           <div class="tab-pane fade in" id="departments">
             <div class="list-group">
-              <center><h3>CU-Boulder Departments:</h3><br></center>
               <% @alldepartments.each do |department| %>
+                <% if department.pin? %>
+                  <center><h3>Pinned Departments:</h3><br></center>
+                  <%= link_to(department, class: "list-group-item") do %>
+                  <h4 class="list-group-item-heading">
+                    <%= department.subject %> - <%= department.title %><span class="badge pull-right"><%= department.courses.count %> Courses</span>
+                  </h4>
+                  <% end %>
+                <% end %>
+              <% end %>
+
+                <br><br><center><h3>Other Departments:</h3><br></center>
+                <% @alldepartments.each do |department| %>
                 <%= link_to(department, class: "list-group-item") do %>
                   <h4 class="list-group-item-heading">
                     <%= department.subject %> - <%= department.title %><span class="badge pull-right"><%= department.courses.count %> Courses</span>

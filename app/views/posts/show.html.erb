@@ -63,7 +63,7 @@
           	<% @comments.each do |com| %>
 	          	<div class="panel panel-default">
 	          		<div class="panel-body">
-	          			<%= com.comment %>
+	          			<%= com.comment.try(:html_safe) %>
                   <% if com.user == current_user %>
                     <span class="pull-right">
                       <%= button_to({controller: :comments, action: :delete, id: com, post_id: @post}, method: :delete, data: { confirm: 'Sure you want to delete this commet?', disable_with: 'loading...' }, class: "btn btn-default btn-link btn-xs") do %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141123060607) do
+ActiveRecord::Schema.define(version: 20141206185041) do
 
   create_table "comments", force: true do |t|
     t.string   "title",            limit: 50, default: ""
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20141123060607) do
     t.datetime "updated_at"
     t.integer  "credits"
     t.string   "subject"
+    t.boolean  "pin"
   end
 
   create_table "courses_users", force: true do |t|
@@ -59,6 +60,7 @@ ActiveRecord::Schema.define(version: 20141123060607) do
     t.string   "campus"
     t.string   "acro"
     t.string   "type"
+    t.boolean  "pin"
   end
 
   create_table "departments_users", force: true do |t|
@@ -97,6 +99,7 @@ ActiveRecord::Schema.define(version: 20141123060607) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "type"
+    t.boolean  "pin"
   end
 
   create_table "users", force: true do |t|

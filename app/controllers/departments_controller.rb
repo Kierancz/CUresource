@@ -43,6 +43,7 @@ class DepartmentsController < ApplicationController
 	end
 
 	def edit
+		redirect_to @department
 	end
 
 	def update
@@ -63,13 +64,29 @@ class DepartmentsController < ApplicationController
 		redirect_to action: "index"
 	end
 
+	def pin
+		@department = Department.find(params[:department_id])
+		@department.pin = true
+		@department.save
+		redirect_to @department
+		flash[:success] = "#{@department.title} was pinned! "
+	end
+
+	def deletepin
+		@department = Department.find(params[:department_id])
+		@department.pin = false
+		@department.save
+		redirect_to @department
+	end
+
+
 	private
 		def find_department
 			@department = Department.find(params[:id]) unless params[:id].blank?
 		end
 
 		def department_params
-			params.require(:department).permit(:subject, :title, :description, :banner, :info, :college, :type)
+			params.require(:department).permit(:subject, :title, :description, :banner, :info, :college, :type, :pin)
 		end
 
 end

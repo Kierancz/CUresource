@@ -8,6 +8,9 @@ Curesource::Application.routes.draw do
   resources :departments do
     resources :courses
     resources :posts
+    post :pin
+    put :pin
+    delete :deletepin
   end
 
   resources :courses do
@@ -21,7 +24,7 @@ Curesource::Application.routes.draw do
   resources :favorites, only: [:create, :destroy]
 
 
-  root 'pages#home'
+  root 'departments#index'
   match '/help',                        to: 'pages#help',               via: 'get'
   match '/about',                       to: 'pages#about',              via: 'get'
   match '/contact',                     to: 'pages#contact',            via: 'get'

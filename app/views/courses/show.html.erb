@@ -6,6 +6,12 @@
       <div class="panel-body">
 
         <div id="titlesection">
+          <div id="editlink" class="pull-left">
+            <%= button_to(@department, method: "get", class: 'btn btn-default btn-link btn-xs') do %>
+              <span class="glyphicon glyphicon-chevron-left"></span> Back to <%= @department.title %>
+            <% end %>
+          </div><br>
+
           <% if current_user && current_user.admin_or_instr? %>
             <div id="editlink" class="pull-left">
               <%= button_to([:edit, @course], method: "get", class: 'btn btn-default btn-link btn-xs') do %>
@@ -13,12 +19,6 @@
               <% end %>
             </div><br>
           <% end %>
-
-          <div id="editlink" class="pull-left">
-            <%= button_to(@department, method: "get", class: 'btn btn-default btn-link btn-xs') do %>
-              <span class="glyphicon glyphicon-chevron-left"></span> Back to <%= @department.title %>
-            <% end %>
-          </div>
 
           <% if current_user %>
             <% unless current_user.favorite_courses.exists?(id: @course.id) %>

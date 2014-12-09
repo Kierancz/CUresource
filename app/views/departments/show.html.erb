@@ -5,16 +5,16 @@
       <div class="panel-body">
 
         <div id="titlesection">
-          <div id="editlink" class="pull-left">
-            <% if current_user && (can? :update, Department) %>
+          <% if current_user && (can? :update, Department) %>
+            <div id="editlink" class="pull-left">
               <%= button_to(edit_department_path, method: :get, class: 'btn btn-default btn-link btn-xs') do %>
                 <span class="glyphicon glyphicon-edit"></span> Edit <%= @department.subject %>
               <% end %>
-            <% end %>
-          </div>
+            </div><br>
+          <% end %>
 
+          <% if current_user && (can? :pin, Department) %>
             <div id="editlink" class="pull-left">
-            <% if current_user && (can? :pin, Department) %>
               <% unless @department.pin? %>
                 <%= button_to(department_pin_path(@department), method: :post, class: 'btn btn-default btn-link btn-xs') do %>
                   <span class="glyphicon glyphicon-pushpin"></span> Pin
@@ -25,9 +25,7 @@
                 <% end %>
               <% end %>
             </div>
-
-            <% end %>
-          </div>
+          <% end %>
         </div>
 
         <h1><b><%= @department.title %></b><br>
@@ -75,8 +73,8 @@
               <center><h3>Pinned Posts:</h3></center>
               <%= render "posts/pinned_posts" %>
             <% end %>
-              <center><h3>Department Posts:</h3></center>
-              <%= render "posts/posts"%>
+            <center><h3>Department Posts:</h3></center>
+            <%= render "posts/posts"%>
           </div>
 
           <% if current_user && (can? :create, Post) %>

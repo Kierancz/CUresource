@@ -10,7 +10,7 @@
       </div>
       <div id="collapse<%= post.title.gsub(/[^0-9a-z]/i, '') %>" class="accordian-body collapse">
         <div id="postbody" class="accordian-inner">
-          <%= post.content.try(:html_safe) %>
+            <%= post.content.try(:html_safe) %>
         </div>
           <div class="panel-footer">
             <span class="pull-right">

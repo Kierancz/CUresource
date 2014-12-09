@@ -37,7 +37,13 @@ class PostsController < ApplicationController
 	def update
 		@post = Post.find(params[:id])
 		if @post.update_attributes(post_params)
-			redirect_to @postable
+			if @post.department_id?
+				redirect_to department_path(department_id) + '#posts'
+			elsif @post.course_id?
+				redirect_to course_path(course_id) + '#posts'
+			else
+				redirect_to request.referer + '#posts'
+			end
 			flash[:success] = "#{@post.title} was updated!"
 		else
 			render action: :edit

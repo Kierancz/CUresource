@@ -9,7 +9,6 @@ Curesource::Application.routes.draw do
     resources :courses
     resources :posts
     post :pin
-    put :pin
     delete :deletepin
   end
 
@@ -19,6 +18,8 @@ Curesource::Application.routes.draw do
 
   resources :posts do
     resources :comments
+    post :pin
+    delete :delete_pin
   end
 
   resources :favorites, only: [:create, :destroy]

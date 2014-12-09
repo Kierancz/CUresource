@@ -1,14 +1,14 @@
 <div class="panel-group" id="accordion">
-  <% @posts.each do |post| %>
+  <% @pinned_posts.each do |post| %>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= post.title.gsub(/[^0-9a-z]/i, '') %>">
+          <a data-toggle="collapse" data-parent="#accordion" href="#pincollapse<%= post.title.gsub(/[^0-9a-z]/i, '') %>">
             <%= post.title %> - <small><%= post.description.capitalize %></small>
           </a>
         </h4>
       </div>
-      <div id="collapse<%= post.title.gsub(/[^0-9a-z]/i, '') %>" class="accordian-body collapse">
+      <div id="pincollapse<%= post.title.gsub(/[^0-9a-z]/i, '') %>" class="accordian-body collapse">
         <div id="postbody" class="accordian-inner">
           <%= post.content.try(:html_safe) %>
         </div>

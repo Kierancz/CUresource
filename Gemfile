@@ -35,6 +35,8 @@ gem 'acts_as_commentable'
 gem 'jquery-validation-rails'
 gem 'ransack'
 gem 'jquery-cookie-rails'
+gem 'smart_listing'
+gem 'kaminari'
 
 group :development, :test do
   gem 'sqlite3'

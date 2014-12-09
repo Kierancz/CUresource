@@ -11,6 +11,7 @@
                 <span class="glyphicon glyphicon-edit"></span> Edit <%= @department.subject %>
               <% end %>
             <% end %>
+          </div>
 
             <div id="editlink" class="pull-left">
             <% if current_user && (can? :pin, Department) %>
@@ -70,14 +71,18 @@
           </div>
 
           <div class="tab-pane" id="posts"><br>
-            <center><h3>Department Posts:</h3></center>
-            <%= render "posts/posts" %>
+            <% if @pinned_posts %>
+              <center><h3>Pinned Posts:</h3></center>
+              <%= render "posts/pinned_posts" %>
+            <% end %>
+              <center><h3>Department Posts:</h3></center>
+              <%= render "posts/posts"%>
           </div>
 
           <% if current_user && (can? :create, Post) %>
-          <div class="tab-pane" id="createpost"><br>
-            <%= render "posts/form" %>
-          </div>
+            <div class="tab-pane" id="createpost"><br>
+              <%= render "posts/form" %>
+            </div>
           <% end %>
 
           <% if current_user %>

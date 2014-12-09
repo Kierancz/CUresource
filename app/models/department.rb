@@ -7,13 +7,5 @@ class Department < ActiveRecord::Base
 
 	scope :alph, lambda { order("departments.subject ASC") }
 	scope :recent, lambda {|*args| order("departments.updated_at DESC") }
-
-	def self.sortsearch(search)
-		if search
-			where('name LIKE?', "%#{search}%")
-		else
-			scoped
-		end
-	end
 	
 end

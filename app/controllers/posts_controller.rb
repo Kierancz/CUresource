@@ -44,6 +44,22 @@ class PostsController < ApplicationController
 		end
 	end
 
+	def pin
+		@post = Post.find(params[:post_id])
+		@post.pin = true
+		@post.save!
+		redirect_to	request.referer + '#posts'
+		flash[:success] = "#{@post.title} was pinned! "
+	end
+
+	def delete_pin
+		@post = Post.find(params[:post_id])
+		@post.pin = false
+		@post.save!
+		redirect_to	request.referer + '#posts'
+		flash[:success] = "#{@post.title} was unpinned! "
+	end
+
 	def destroy
 		@post = Post.find(params[:id])
 		if @post.destroy()

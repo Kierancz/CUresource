@@ -14,6 +14,12 @@
             </div><br>
           <% end %>
 
+          <div id="editlink" class="pull-left">
+            <%= button_to(@department, method: "get", class: 'btn btn-default btn-link btn-xs') do %>
+              <span class="glyphicon glyphicon-chevron-left"></span> Back to <%= @department.title %>
+            <% end %>
+          </div>
+
           <% if current_user %>
             <% unless current_user.favorite_courses.exists?(id: @course.id) %>
               <%= button_to(favorites_path(course_id: @course), method: :post, class: 'btn btn-default btn-link btn-xs') do %>
@@ -25,12 +31,6 @@
               <% end %>
             <% end %>
           <% end %>
-          
-          <div id="editlink" class="pull-left">
-            <%= button_to(@department, method: "get", class: 'btn btn-default btn-link btn-xs') do %>
-              <span class="glyphicon glyphicon-chevron-left"></span> Back to <%= @department.title %>
-            <% end %>
-          </div>
 
           <div class="smalltext" style="position: absolute; top: 8px; right: 26px; width: 200px; text-align:right"><p><span class="glyphicon glyphicon-time"></span> <%= time_ago_in_words(@course.updated_at.to_time) unless @course.updated_at.blank? %></p>
           </div>

@@ -4,6 +4,9 @@ class DepartmentsController < ApplicationController
 	before_action :authenticate_user!, only: [:create, :destroy, :new, :edit, :update]
 	before_action :find_department
 
+	include SmartListing::Helper::ControllerExtensions
+	helper  SmartListing::Helper
+
 	def new
 		@department = Department.new
 	end
@@ -27,9 +30,8 @@ class DepartmentsController < ApplicationController
 		@courses = Course.search(title_cont: q).result
 		@posts = Post.search(title_cont: q).result
 
-		#@sortdepartments = Department.sortsearch(params[:search]).order(sort_column + " " + sort_direction).paginate(per_page: 5, page: params[:page])
-			@alldepartments = Department.alph
-			#redirect_to request.referrer + "#departments"
+		#@alldepartments = smart_listing_create(:departments, Department.all, partial: "departments/sortdep", default_sort: {title: "asc"})
+		@alldepartments = Department.alph
 
 		@allcourses = Course.recent.limit(10)
 	end
@@ -37,6 +39,7 @@ class DepartmentsController < ApplicationController
 	def show
 		@postable = @department
 		@posts = @department.posts
+		@pinned_posts = @department.posts.where(pin: true)
 
 		@course = Course.new
 		@course.department_id = @department
@@ -76,6 +79,7 @@ class DepartmentsController < ApplicationController
 		@department.pin = false
 		@department.save!
 		redirect_to @department
+		flash[:success] = "#{@department.title} was unpinned! "
 	end
 
 

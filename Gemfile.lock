@@ -1,21 +1,8 @@
 GIT
-  remote: git://github.com/asithade/bootstrap-wysihtml5-rails.git
-  revision: b49063722e10e62927b8af25788be642cc1d6ae8
-  specs:
-    bootstrap-wysihtml5-rails (0.3.1.23)
-      railties (>= 3.0)
-
-GIT
   remote: git://github.com/bmabey/database_cleaner.git
   revision: 84cabcaa4f8b4682cea1bf4cd1cb137f9eaececc
   specs:
     database_cleaner (1.3.0)
-
-GIT
-  remote: https://github.com/asithade/imgur-ruby
-  revision: 829fea2e307e4140867913720057e5767ddf0cc2
-  specs:
-    imgurruby (1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -50,6 +37,8 @@ GEM
     bcrypt-ruby (3.1.2)
     bootstrap-sass (3.1.1.1)
       sass (~> 3.2)
+    bootstrap-wysihtml5-rails (0.3.3.8)
+      railties (>= 3.0)
     builder (3.1.4)
     cancan (1.6.10)
     capybara (2.1.0)
@@ -280,7 +269,7 @@ DEPENDENCIES
   acts_as_commentable
   bcrypt-ruby (= 3.1.2)
   bootstrap-sass (~> 3.1.1)
-  bootstrap-wysihtml5-rails!
+  bootstrap-wysihtml5-rails
   cancan
   capybara (= 2.1.0)
   coffee-rails (= 4.0.1)
@@ -290,7 +279,6 @@ DEPENDENCIES
   devise
   factory_girl_rails (= 4.2.1)
   font-awesome-rails
-  imgurruby!
   jbuilder (~> 1.2)
   jquery-cookie-rails
   jquery-rails (= 3.1.0)

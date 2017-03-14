@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :courses, -> { uniq }
   has_many :posts
   has_many :favorites
+  has_many :favorite_departments, through: :favorites, source: :favoritable, source_type: 'Department'
   has_many :favorite_courses, through: :favorites, source: :favoritable, source_type: 'Course'
   has_many :favorite_posts, through: :favorites, source: :favoritable, source_type: 'Post'
 

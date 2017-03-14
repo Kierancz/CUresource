@@ -34,15 +34,23 @@ section {
 
 body { 
   padding-top: 80px; 
-  background: url("http://alumni.colorado.edu/wp-content/uploads/2010/10/2010_Aerial213_revisedGA.jpg") no-repeat center center fixed;
+  display: block;
+  background-image: url("https://c1.staticflickr.com/4/3843/33386526656_aacaf207e3_k.jpg
+");
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
 
+
 textarea {
   resize: vertical;
+}
+
+.transNav {
+  background-color: rgba(#000, 0.5) !important;
+  z-index: 2;
 }
 
 .panel-transparent {

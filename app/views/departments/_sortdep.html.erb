@@ -1,0 +1,9 @@
+<%= smart_listing_render :departments %>
+  <%= smart_listing.sortable "Title", "title" %>
+  <% smart_listing.alldepartments.each do |department| %>
+  <%= link_to(department, class: "list-group-item") do %>
+    <h4 class="list-group-item-heading">
+      <%= department.subject %> - <%= department.title %><span class="badge pull-right"><%= department.courses.count %> Courses</span>
+    </h4>
+  <% end %>
+<% end %>
